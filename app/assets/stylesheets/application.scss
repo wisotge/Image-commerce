@@ -1,3 +1,5 @@
+@import "bootstrap";
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -10,6 +12,32 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
+
+ .myNavbar   {
+     background-color: #312F2F;
+     color:#222;
+     border: 1px solid #333;
+     height: 100px;
+     font: bolder;
+  }
+
+  .navbarLogo {
+    font-weight: 900;
+    letter-spacing: 0.286em;
+    line-height: 62px;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: white;
+  }
+
+  .navbarText {
+    color: white;
+  }
+
+  footer {
+    position : fixed; bottom:0;
+    background-color: #222;
+    height: 60px;
+  }
