@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Register Image Item</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row form-group">
+        <div class="col-md-12">
+          <%= form_for @image_item do |f| %>
+          <div>
+            <%= f.hidden_field :user_id, class: :"form-control", value: current_user.id%>
+            <%= f.label :ImageTitle %><br/>
+            <%= f.text_field :title, class: :"form-control", cols: :"30", rows: :"10", placeholder: :"title" %>
+          </div>
+          <br/>
+          <div>
+            <%= f.label :ImagePrice %><br/>
+            <%= f.text_field :price, class: :"form-control", cols: :"30", rows: :"10", placeholder: :"price" %>
+          </div>
+          <br/>
+          <div>
+              <%= f.label :ImagePreview %><br/>
+              <%= f.file_field :repimg, class: :"form-control" %>
+          </div>
+          <br/>
+          <%= f.label :ImageDescription %><br/>
+          <%= tinymce :language => "en" %>
+          <%= f.text_area :description, class: :"form-control tinymce", cols: :"30", rows: :"15", placeholder: :"body" %>
+          <br/>
+          <div class="actions">
+            <%= f.submit "등록", :class => 'btn btn-primary btn-block' %>
+          </div>
+        <% end %>
+        <br/>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $("document").ready(function(){
+      $(".category .dropdown-menu li a").click(function() {
+		});
+  })
+  </script>
+</body>
+</html>
