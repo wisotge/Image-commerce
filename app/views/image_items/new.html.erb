@@ -25,10 +25,11 @@
             <%= f.text_field :price, class: :"form-control", cols: :"30", rows: :"10", placeholder: :"price" %>
           </div>
           <br/>
-          <div>
-              <%= f.label :ImagePreview %><br/>
-              <%= f.file_field :repimg, class: :"form-control" %>
+          <div class="upload-preview">
+            <img />
+            <%= f.file_field :repimg, class: :"form-control file", cols: :"30", rows: :"10", placeholder: :"Image" %>
           </div>
+          <!--<input class="file" name="logo" type="file">-->
           <br/>
           <%= f.label :ImageDescription %><br/>
           <%= tinymce :language => "en" %>
@@ -44,10 +45,19 @@
   </div>
 
   <script type="text/javascript">
-    $("document").ready(function(){
-      $(".category .dropdown-menu li a").click(function() {
-		});
-  })
+  $(document).ready(function(){
+    var preview = $(".upload-preview img");
+    $(".file").change(function(event){
+      var input = $(event.currentTarget);
+      var file = input[0].files[0];
+      var reader = new FileReader();
+      reader.onload = function(e){
+          image_base64 = e.target.result;
+          preview.attr("src", image_base64);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
   </script>
 </body>
 </html>
