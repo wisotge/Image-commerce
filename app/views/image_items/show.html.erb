@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="boxed">
+    <div class="panel" id="user-section">
+      <div class="panel pos-rel card">
+        <div class="pad-all text-left" style="border:2px solid black; font-size: 11pt;">
+          <table border="1" width="1100" height="150">
+            <tr>
+              <td width="20%" rowspan="3">
+                <% if @image_item.repimg %>
+                <% else %>
+                  <i class="fas fa-camera-retro fa-border fa-3x fa-fw" style="font-size:250px;" aria-hidden="true"></i>
+                <% end %>
+              </td>
+              <td class="hidden-bottom">
+                <strong>제품명: </strong><%= @image_item.title %>
+              </td>
+            </tr>
+            <tr>
+              <td>제품 가격: <%= @image_item.price %></td>
+            </tr>
+            <tr>
+              <td>제품 설명: <%= @image_item.description %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr/>
+  <div class="container">
+    <div class="row form-group">
+      <div class="col-md-12">
+        <%= form_for @review, :url => reviews_path, method: :post, :remote => true  do |f| %>
+        <div>
+          <%= f.label :리뷰작성 %><br/>
+          <%= f.text_field :title, class: :"form-control", cols: :"20", rows: :"10", placeholder: :"title" %>
+        </div>
+        <br/>
+        <div>
+          <%= f.text_field :rate, class: :"form-control", cols: :"30", rows: :"10", placeholder: :"rate" %>
+        </div>
+        <br/>
+        <%= f.hidden_field :reviewable_type, class: "form-control", :value => 'ImageItem' %>
+        <%= f.hidden_field :user_id, class: "form-control", value: current_user.id %>
+        <%= f.hidden_field :reviewable_id, class: "form-control", value: @image_item.id %>
+        <%= tinymce :language => "en" %>
+        <%= f.text_area :body, class: :"form-control tinymce", cols: :"15", rows: :"10", placeholder: :"body" %>
+        <br/>
+        <div class="actions">
+          <%= f.submit "등록", :class => 'btn btn-primary btn-block' %>
+        </div>
+      <% end %>
+      <br/>
+    </div>
+  </div>
+  <hr/>
+  <h4>리뷰</h4>
+  <hr/>
+  <%= render "reviews/index" %>
+</div>

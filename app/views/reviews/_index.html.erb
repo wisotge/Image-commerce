@@ -1,0 +1,9 @@
+<% @rep_review.each do |review| %>
+  <div style="border: 1px solid grey">
+    <div class="comment-header">
+      <a href="#" class="media-heading box-inline text-main text-bold"><strong>작성자</strong>: <%= review.user.email %></a>
+      <p class="text-muted text-sm"><%= review.title %></p>
+    </div>
+    <p><strong>후기: </strong><%= review.body.html_safe %></p>
+  </div>
+<% end %>

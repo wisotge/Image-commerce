@@ -3,6 +3,7 @@
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'main#index'
   get 'main/index', to: "main#index"
-
+  get 'main/sort', to: "main#sort"
   resources :image_items
+  resources :reviews
 end
