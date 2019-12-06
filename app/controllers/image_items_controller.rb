@@ -25,7 +25,7 @@ class ImageItemsController < ApplicationController
   def show
     @image_item = ImageItem.find(params[:id])
     @review = Review.new
-    @rep_review = Review.where(reviewable_id: @image_item.id)
+    @rep_review = Review.where(reviewable_id: @image_item.id).page(params[:page]).per(3)
   end
 
   def update

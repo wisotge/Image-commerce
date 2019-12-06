@@ -33,15 +33,15 @@
   <hr/>
   <div class="container">
     <div class="row form-group">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <%= form_for @review, :url => reviews_path, method: :post, :remote => true  do |f| %>
         <div>
           <%= f.label :리뷰작성 %><br/>
-          <%= f.text_field :title, class: :"form-control", cols: :"20", rows: :"10", placeholder: :"title" %>
+          <%= f.text_field :title, class: :"form-control", cols: :"10", rows: :"10", placeholder: :"title" %>
         </div>
         <br/>
         <div>
-          <%= f.text_field :rate, class: :"form-control", cols: :"30", rows: :"10", placeholder: :"rate" %>
+          <%= f.number_field :rate, class: :"form-control", cols: :"30", rows: :"10", placeholder: :"rate" %>
         </div>
         <br/>
         <%= f.hidden_field :reviewable_type, class: "form-control", :value => 'ImageItem' %>
@@ -56,9 +56,12 @@
       <% end %>
       <br/>
     </div>
+    <div class="col-md-6">
+      <h6>등록된 리뷰</h6>
+      <hr/>
+      <%= render "reviews/index" %>
+    </div>
   </div>
   <hr/>
-  <h4>리뷰</h4>
-  <hr/>
-  <%= render "reviews/index" %>
+
 </div>

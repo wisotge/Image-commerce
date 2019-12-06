@@ -56,7 +56,11 @@
                   <tr>
                     <td class="hidden-bottom">010-1234-5678</td>
                     <td rowspan="2"><%= current_user.image_items.size %></td>
-                    <td class="hidden-right" rowspan="2"><%= current_user.chocomush %></td>
+                    <% if current_user.chocomush == " " %>
+                      <td class="hidden-right" rowspan="2">0</td>
+                    <% else %>
+                      <td class="hidden-right" rowspan="2"><%= current_user.chocomush %></td>
+                    <% end %>
                   </tr>
                   <tr>
                     <td>경기도 수원시 영통구 123</td>
