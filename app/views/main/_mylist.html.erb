@@ -1,5 +1,30 @@
 <% columns = {
-  upload_item: [],
+  upload_item: ["price", "createdAt", "delete"],
   freedownload_item: [],
   paydownload_item: [],
   } %>
+
+  <table class="table text-center">
+    <th class="thbgcolor" width="15%">Image</th>
+    <th class="thbgcolor" width="15%">Title</th>
+    <th class="thbgcolor" width="15%">Price</th>
+    <th class="thbgcolor" width="15%">CreatedAt</th>
+    <th class="thbgcolor" width="15%">Delete</th>
+    <!-- data per Category -->
+    <% if @info_type == "upload" %>
+      <!-- 내가 업로드한 상품 -->
+      <% @image_item.each do |item| %>
+        <tr>
+          <td><%= image_tag item.repimg.url ,style: 'width: 320px; height: 300px;' unless item.repimg.url.nil? %></td>
+          <td><%= item.title %></td>
+          <td><%= item.price %></td>
+          <td><%= item.created_at %></td>
+          <td><%= link_to "삭제", image_item_path(:id => item.id), method: :delete, remote: true, :class => "btn btn-sm btn-primary"%></td>
+       </tr>
+      <% end %>
+    <% elsif @info_type == "freedownload" %>
+      <!-- render freedownload item -->
+    <% else %>
+      <!-- render paydownload item -->
+    <% end %>
+  </table>

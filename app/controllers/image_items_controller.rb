@@ -32,6 +32,8 @@ class ImageItemsController < ApplicationController
   end
 
   def destroy
+    @image_item = ImageItem.find(params[:id])
+    @image_item.destroy
   end
 
   private

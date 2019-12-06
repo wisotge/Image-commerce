@@ -28,5 +28,12 @@ class MainController < ApplicationController
   end
 
   def mypage
+    @info_type = params[:type]
+    if @info_type == "freedownload"
+    elsif @info_type == "paydownload"
+    else
+      @image_item = ImageItem.where(user_id: current_user.id).page(params[:page]).per(5)
+    end
   end
+
 end
