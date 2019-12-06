@@ -1,0 +1,78 @@
+<section id="home" class="video-hero bg-main-1" style="height: 500px;background-size: cover;background-position: center center;background-attachment: fixed;"
+    data-section="home">
+	<div class="overlay"></div>
+	<div class="display-t display-t2 text-center">
+		<div class="display-tc display-tc2">
+			<div class="container">
+				<div class="col-md-12 col-md-offset-0">
+					<div class="animate-box">
+						<h2>Show Post</h2>
+						<p class="breadcrumbs">
+							<span>
+								<a href="posts_path">index</a>
+							</span>
+							<span>Show post</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div id="colorlib-contact">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-md-push-4 animate-box">
+				<h2>Detail Information</h2>
+				<div class="row">
+					<div class="col-md-18">
+						<div class="contact-info-wrap-flex">
+							<div class="con-info">
+								<p>
+									<h4><strong> Post Title </strong></h4>
+									<%= @post.title %>
+                </p>
+							</div>
+              <div class="con-info">
+								<p>
+									<h4><strong> Registered Date </strong></h4>
+									<%= @post.created_at %>
+                </p>
+							</div>
+              <div class="con-info">
+								<p>
+									<h4><strong> Writer </strong></h4>
+									<%= @post.user.email %>
+                </p>
+							</div>
+							<div class="con-info">
+                <p>
+                  <h4><strong> Post Content </strong></h4>
+                  <%= @post.body %>
+                </p>
+							</div>
+              <div value="back" class="form-group">
+                    <%= link_to "Back", posts_path, :class=>"btn btn-primary" %>
+              </div> &nbsp;&nbsp;
+              <div value="edit" class="form-group">
+                <% if @post.user.id == current_user.id && current_user.present? %>
+                    <%= link_to "Edit", edit_post_path(@post), :class=>"btn btn-primary" %>
+                    <!-- edit_post_path(post) or edit_post_path in show.html.erb? -->
+                    <!-- show.html.erb already selected by post.id -->
+                <% end %>
+              </div> &nbsp;&nbsp;
+              <div value="delete" class="form-group">
+                <% if @post.user.id == current_user.id && current_user.present? %>
+                    <%= link_to "Delete", post_path, method: :delete, :class=>"btn btn-primary" %>
+                <% end %>
+              </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="map" class="colorlib-map"></div>

@@ -1,0 +1,5 @@
+$(function(){
+  var html = "<%= escape_javascript(render(partial: 'image_items/index')) %>";
+  $("#image-item-list").html(html);
+  console.log("succesfully render!");
+})
