@@ -20,13 +20,22 @@
             <%= f.text_field :title, class: :"form-control", cols: :"30", rows: :"10", placeholder: :"title" %>
           </div>
           <br/>
-          <div>
+          <div class="checkbox">
+            <%= f.label :imgtype %><br/>
+            <%= f.radio_button :imgtype, name: :"pay", class: :"form-control", value: "pay"%>
+            <%= f.label :imgtype, "유료"%>
+            <%= f.radio_button :imgtype, name: :"free", class: :"form-control", value: "free"%>
+            <%= f.label :imgtype, "무료"%>
+          </div>
+          <br/>
+          <div id="image-price">
             <%= f.label :ImagePrice %><br/>
             <%= f.text_field :price, class: :"form-control", cols: :"30", rows: :"10", placeholder: :"price" %>
           </div>
           <br/>
           <div class="upload-preview">
-            <img />
+            <img style: 'width: 200; height: 200;'/>
+            <br/><br/>
             <%= f.file_field :repimg, class: :"form-control file", cols: :"30", rows: :"10", placeholder: :"Image" %>
           </div>
           <!--<input class="file" name="logo" type="file">-->
@@ -54,10 +63,17 @@
       reader.onload = function(e){
           image_base64 = e.target.result;
           preview.attr("src", image_base64);
+          preview.attr("width", 150);
+          preview.attr("height", 150);
+          preview.attr("border", 3);
       };
       reader.readAsDataURL(file);
     });
   });
+
+  function render_partial() {
+    $("#image-price").html('<button>dd</button>')
+  }
   </script>
 </body>
 </html>

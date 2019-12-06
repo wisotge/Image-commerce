@@ -1,1 +1,81 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Image Commerce</title>
+  </head>
+
+  <!--TIPS-->
+  <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+  <body>
+    <div>
+      <div class="boxed">
+        <div class="container">
+          <div class="tab">
+            <span class="font-size:20px">
+              <!-- Page Title -->
+            </span>
+            <span class="text-right" style="font-size:18px text-align:right;">
+              <div class="dropdown-menus">
+                <span class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">타입별</button>
+                  <div class="dropdown-menu">
+                    <%= link_to "유료", main_sort_path(type: :pay), :class => "dropdown-item", remote: true %>
+                    <%= link_to "무료", main_sort_path(type: :free), :class => "dropdown-item", remote: true %>
+                  </div>
+                </span>
+                <span class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">가격순</button>
+                  <div class="dropdown-menu">
+                    <%= link_to "높은순", main_sort_path(:type => "price", :order => "high"), :class => "dropdown-item", remote: true %>
+                    <%= link_to "낮은순", main_sort_path(:type => "price", :order => "low"), :class => "dropdown-item", remote: true %>
+                  </div>
+                </span>
+                <span class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">등록일</button>
+                  <div class="dropdown-menu">
+                    <%= link_to "최신순", main_sort_path(:type => "date", :order => "recent"), :class => "dropdown-item", remote: true %>
+                    <%= link_to "지난순", main_sort_path(:type => "date", :order => "before"), :class => "dropdown-item", remote: true %>
+                  </div>
+                </span>
+              </div>
+            </span>
+          </div>
+          <br/>
+          <div id="item_list">
+            <%= render partial: "image_items/index" %>
+          </div>
+          <!--
+          <div id="modal">
+          </div>
+        -->
+          <!--
+          <div id="item_search">
+          </div>
+        -->
+        </div>
+
+        <!--===================================================-->
+        <!--END MAIN NAVIGATION-->
+
+      </div>
+
+      <!-- FOOTER -->
+      <!--===================================================-->
+      <!--===================================================-->
+      <!-- END FOOTER -->
+
+    </div>
+    <!--===================================================-->
+    <!-- END OF CONTAINER -->
+
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+    <script type="text/javascript">
+    </script>
+  </body>
+</html>

@@ -7,7 +7,12 @@ class ImageItemsController < ApplicationController
 
   def create
     @image_item = ImageItem.create image_item_params
-    @image_item.save
+    if @image_item.save
+      flash[:success] = "성공적으로 이미지를 업로드하였습니다."
+    else
+      flash[:error] = "이미지를 업로드하는데 실패하였습니다."
+    end
+    redirect_to root_path
   end
 
   def new
@@ -18,6 +23,9 @@ class ImageItemsController < ApplicationController
   end
 
   def show
+    @image_item = ImageItem.find(params[:id])
+    @review = Review.new
+    @rep_review = Review.where(reviewable_id: @image_item.id)
   end
 
   def update
@@ -28,6 +36,6 @@ class ImageItemsController < ApplicationController
 
   private
   def image_item_params
-    params.require(:image_item).permit(:title, :repimg, :description, :price, :user_id)
+    params.require(:image_item).permit(:title, :imgtype, :price, :repimg, :user_id, :description)
   end
 end

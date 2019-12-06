@@ -1,5 +1,3 @@
-@import "bootstrap";
-
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -14,6 +12,7 @@
  *
  *= require_self
  */
+ @import "bootstrap";
 
  .myNavbar   {
      background-color: #312F2F;
@@ -34,6 +33,14 @@
 
   .navbarText {
     color: white;
+  }
+
+  .flashContent {
+    margin-top: 10px;
+  }
+
+  .bodyContent {
+    margin-top: 30px;
   }
 
   footer {
