@@ -10,7 +10,7 @@ gem 'devise'
 # 로그인/회원가입 문구 다국어 자동 설정
 gem 'devise-i18n'
 # 어드민
-gem 'activeadmin'
+gem 'rails_admin'
 # bootstrap - 반응형 웹 템플릿
 gem 'bootstrap', '~> 4.3.1'
 # jquery - 자바스크립트 라이브러리
