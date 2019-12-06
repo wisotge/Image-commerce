@@ -12,15 +12,18 @@
                   <i class="fas fa-camera-retro fa-border fa-3x fa-fw" style="font-size:250px;" aria-hidden="true"></i>
                 <% end %>
               </td>
-              <td class="hidden-bottom">
+              <td class="hidden-bottom tableContent">
                 <strong>제품명: </strong><%= @image_item.title %>
               </td>
             </tr>
             <tr>
-              <td>제품 가격: <%= @image_item.price %></td>
+              <td class="tableContent">
+                제품 가격: <%= @image_item.price %>
+                <button class="btn btn-primary btn-sm" style="margin-left: 20px;">다운로드</button>
+              </td>
             </tr>
             <tr>
-              <td>제품 설명: <%= @image_item.description %></td>
+              <td class="tableContent"><%= @image_item.description.html_safe %></td>
             </tr>
           </table>
         </div>

@@ -22,10 +22,10 @@
           <br/>
           <div class="checkbox">
             <%= f.label :imgtype %><br/>
-            <%= f.radio_button :imgtype, name: :"pay", class: :"form-control", value: "pay"%>
-            <%= f.label :imgtype, "유료"%>
-            <%= f.radio_button :imgtype, name: :"free", class: :"form-control", value: "free"%>
-            <%= f.label :imgtype, "무료"%>
+            <%= f.radio_button :imgtype, "pay"%>
+            <%= f.label :imgtype, "유료", value: "pay"%>
+            <%= f.radio_button :imgtype, "free"%>
+            <%= f.label :imgtype, "무료", value: "free"%>
           </div>
           <br/>
           <div id="image-price">

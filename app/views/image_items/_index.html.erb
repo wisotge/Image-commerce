@@ -1,11 +1,11 @@
 <div class="row">
   <% @image_item.each do |item| %>
-    <div class="col-md-4 item_data">
+    <div class="col-md-4 item_data" style="padding-top: 20px;">
       <div class="card">
-        <div class="thumbnail">
+        <div class="thumbnail" style="margin-top:10px">
           <h1 class="a" style="text-align:center;">
             <% if item.repimg %>
-              <%= image_tag item.repimg.url ,style: 'width: 320px; height: 300px;' unless item.repimg.url.nil? %>
+              <%= image_tag item.repimg.url ,style: 'width: 320px; height: 350px;' unless item.repimg.url.nil? %>
             <% else %>
               <i class="fas fa-camera-retro fa-border fa-3x fa-fw" style="font-size:250px;" aria-hidden="true"></i>
             <% end %>
@@ -13,7 +13,11 @@
         </div>
         <div class="card-body">
           <h5 class="card-title" style="text-align:center;">
-            <a href="/items/<%= item.id %>"><%= item.title %></a><br/>(<%= item.price %>$)
+            <% if item.imgtype == "pay" %>
+              <a href="/items/<%= item.id %>"><%= item.title %></a><br/>(<%= item.price %>$)
+            <% else %>
+              <a href="/items/<%= item.id %>"><%= item.title %></a><br/>(FREE)
+            <% end %>
           </h5>
           <hr/>
           <div style="text-align:center;">
@@ -24,7 +28,8 @@
       </div>
     </div>
   <% end %>
-</div><br/<br/>
+</div>
+<br/><br/>
 <div class="col-sm-7" style="text-align: center;">
   <ul class="pagination">
     <%= paginate @image_item %>
