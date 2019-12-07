@@ -5,6 +5,7 @@
   root 'main#index'
   get 'main/index', to: "main#index"
   get 'main/mypage', to: "main#mypage"
+  get 'charge', to: "main#charge"
   resources :image_items
   resources :reviews
 end
