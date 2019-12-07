@@ -13,10 +13,10 @@
         </div>
         <div class="card-body">
           <h5 class="card-title" style="text-align:center;">
-            <% if item.imgtype == "pay" %>
-              <a href="/image_items/<%= item.id %>"><%= item.title %></a><br/>(<%= item.price %>$)
-            <% else %>
+            <% if item.price == 0 %>
               <a href="/image_items/<%= item.id %>"><%= item.title %></a><br/>(FREE)
+            <% else %>
+              <a href="/image_items/<%= item.id %>"><%= item.title %></a><br/>(<%= item.price %>$)
             <% end %>
           </h5>
           <hr/>

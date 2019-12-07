@@ -15,7 +15,7 @@
       <!-- 내가 업로드한 상품 -->
       <% @image_item.each do |item| %>
         <tr>
-          <td><%= image_tag item.repimg.url ,style: 'width: 320px; height: 300px;' unless item.repimg.url.nil? %></td>
+          <td><%= image_tag item.repimg.url ,style: 'width: 150px; height: 150px;' unless item.repimg.url.nil? %></td>
           <td><%= item.title %></td>
           <td><%= item.price %></td>
           <td><%= item.created_at %></td>

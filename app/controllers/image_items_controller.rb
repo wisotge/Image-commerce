@@ -7,6 +7,9 @@ class ImageItemsController < ApplicationController
 
   def create
     @image_item = ImageItem.create image_item_params
+    if @image_item.price.nil?
+      @image_item.price = 0
+    end
     if @image_item.save
       flash[:success] = "성공적으로 이미지를 업로드하였습니다."
     else
