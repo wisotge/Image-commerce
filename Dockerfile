@@ -4,6 +4,9 @@ RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
+CMD ["gem", "update", "--system"]
+CMD ["gem", "install", "bundler"]
+CMD ["bundler", "update", "--bundler"]
 RUN bundle install
 CMD ["rails", "db:create"]
 CMD ["rails", "db:migrate"]
