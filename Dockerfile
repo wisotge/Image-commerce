@@ -4,10 +4,10 @@ RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
-CMD ["gem", "update", "--system"]
-CMD ["gem", "install", "bundler", "-v", "2.0.1"]
-CMD ["bundler", "update", "--bundler"]
+RUN gem update --system
+RUN gem install bundler -v 2.0.1
+RUN bundler update --bundler
 RUN bundle install
-CMD ["rails", "db:create"]
-CMD ["rails", "db:migrate"]
-CMD ["rails", "server"]
+RUN rails db:create
+RUN rails db:migrate
+RUN rails server
