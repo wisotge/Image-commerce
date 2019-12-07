@@ -24,22 +24,22 @@
                 <span class="dropdown">
                   <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">타입별</button>
                   <div class="dropdown-menu">
-                    <%= link_to "유료", main_sort_path(:type => "pay"), :class => "dropdown-item", remote: true %>
-                    <%= link_to "무료", main_sort_path(:type => "free"), :class => "dropdown-item", remote: true %>
+                    <%= link_to "유료", main_index_path(:type => "pay"), :class => "dropdown-item", remote: true %>
+                    <%= link_to "무료", main_index_path(:type => "free"), :class => "dropdown-item", remote: true %>
                   </div>
                 </span>
                 <span class="dropdown">
                   <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">가격순</button>
                   <div class="dropdown-menu">
-                    <%= link_to "높은순", main_sort_path(:type => "price", :order => "high"), :class => "dropdown-item", remote: true %>
-                    <%= link_to "낮은순", main_sort_path(:type => "price", :order => "low"), :class => "dropdown-item", remote: true %>
+                    <%= link_to "높은순", main_index_path(:type => "price", :order => "high"), :class => "dropdown-item", remote: true %>
+                    <%= link_to "낮은순", main_index_path(:type => "price", :order => "low"), :class => "dropdown-item", remote: true %>
                   </div>
                 </span>
                 <span class="dropdown">
                   <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">등록일</button>
                   <div class="dropdown-menu">
-                    <%= link_to "최신순", main_sort_path(:type => "date", :order => "recent"), :class => "dropdown-item", remote: true %>
-                    <%= link_to "지난순", main_sort_path(:type => "date", :order => "before"), :class => "dropdown-item", remote: true %>
+                    <%= link_to "최신순", main_index_path(:type => "date", :order => "recent"), :class => "dropdown-item", remote: true %>
+                    <%= link_to "지난순", main_index_path(:type => "date", :order => "before"), :class => "dropdown-item", remote: true %>
                   </div>
                 </span>
               </div>

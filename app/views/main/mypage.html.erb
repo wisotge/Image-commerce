@@ -75,18 +75,22 @@
           <div class="col">
             <ul class="nav nav-tabs">
               <li class="nav-item">
-                <%= link_to "무료 다운로드한 이미지", main_mypage_path(:type => "cart_item"), :class => "nav-link", :data_toggle => "tab" %>
+                <%= link_to "무료 다운로드한 이미지", main_mypage_path(type: "freedownload"), :class => "nav-link", :data_toggle => "tab" %>
               </li>
               <li class="nav-item">
-                <%= link_to "유료 다운로드한 이미지", main_mypage_path(:type => "wishlist_item"), :class => "nav-link", :data_toggle => "tab" %>
+                <%= link_to "유료 다운로드한 이미지", main_mypage_path(type: "paydownload"), :class => "nav-link", :data_toggle => "tab" %>
               </li>
               <li class="nav-item">
-                <%= link_to "업로드한 이미지", main_mypage_path(:type => "upload_item"), :class => "nav-link", :data_toggle => "tab" %>
+                <%= link_to "업로드한 이미지", main_mypage_path(:type => "upload"), :class => "nav-link", :data_toggle => "tab" %>
               </li>
             </ul>
             <div class="tab-content" id="mylist">
+              <%= render partial: "main/mylist" %>
             </div>
-            <div id="modal">
+            <div>
+              <ul class="pagination">
+                <%= paginate @image_item %>
+              </ul>
             </div>
           </div>
         </div>

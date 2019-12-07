@@ -1,0 +1,5 @@
+$(function(){
+  var html = "<%= escape_javascript(render 'main/mylist', info_type: @info_type) %>";
+  $("#mylist").html(html);
+  console.log("succesfully render!");
+})

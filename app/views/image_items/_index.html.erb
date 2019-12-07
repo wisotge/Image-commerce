@@ -14,9 +14,9 @@
         <div class="card-body">
           <h5 class="card-title" style="text-align:center;">
             <% if item.imgtype == "pay" %>
-              <a href="/items/<%= item.id %>"><%= item.title %></a><br/>(<%= item.price %>$)
+              <a href="/image_items/<%= item.id %>"><%= item.title %></a><br/>(<%= item.price %>$)
             <% else %>
-              <a href="/items/<%= item.id %>"><%= item.title %></a><br/>(FREE)
+              <a href="/image_items/<%= item.id %>"><%= item.title %></a><br/>(FREE)
             <% end %>
           </h5>
           <hr/>
