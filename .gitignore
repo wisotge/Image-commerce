@@ -21,17 +21,7 @@
 /yarn-error.log
 
 /public/assets
-.byebug_history
-
-# Ignore master key for decrypting credentials and more.
-/config/master.key
-/config/application.yml
-
-# Ignore application configuration
-/config/application.yml
-
-# Ignore image file
-public/uploads/*
+.byebug_histor
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

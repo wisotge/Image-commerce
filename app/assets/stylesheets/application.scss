@@ -14,7 +14,11 @@
  */
  @import "bootstrap";
 
- .myNavbar   {
+  * {
+    margin: 0 auto;
+  }
+
+  .myNavbar   {
      background-color: #312F2F;
      color:#222;
      border: 1px solid #333;

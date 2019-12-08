@@ -1,21 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <title>Register Image Item</title>
-  </head>
-
-  <body>
-    <div class="container">
-      <<h1>zz</h1>
+<div class="container">
+  <%= form_for @current_user, :url => main_chocomush_path, method: :put do |f| %>
+  <div class="">
+    현재 잔액 : <%= @current_user.chocomush %>
   </div>
+  <div>
+    <%= f.label :chocomush %><br/>
+    <%= f.number_field :chocomush, id: :"charge_mount", class: :"form-control", cols: :"30", rows: :"10", placeholder: :"charge amount" %>
+  </div>
+  <div class="actions">
+    <%= f.submit " 충 전 ",id: :"charge-btn", :class => 'btn btn-primary btn-block'%>
+  </div>
+<% end %>
+<br/>
+</div>
 
-  <script type="text/javascript">
-
-  </script>
-</body>
-</html>
+<script type="text/javascript">
+  $("document").ready(function(){
+    $('#charge_mount').val('')
+  })
+  $('#charge-btn').on('click',function () {
+    let url = '/main/paymodlue';
+    $(location).attr('href',url);
+  })
+</script>
+<style>
+    .container {
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+    }
+</style>

@@ -29,11 +29,26 @@ class MainController < ApplicationController
 
   def mypage
     @info_type = params[:type]
+    if current_user.chocomush.nil?
+      current_user.chocomush = 0
+      current_user.save
+    end
     if @info_type == "freedownload"
     elsif @info_type == "paydownload"
     else
       @image_item = ImageItem.where(user_id: current_user.id).page(params[:page]).per(5)
     end
+  end
+
+  def charge
+    @current_user = current_user
+  end
+
+  def addBalance
+    chocomush = params[:user][:chocomush]
+    current_user.chocomush += chocomush.to_i
+    current_user.save
+    redirect_to main_paymodule_path 
   end
 
 end
