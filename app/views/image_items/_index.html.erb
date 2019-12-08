@@ -1,6 +1,6 @@
 <div class="row">
   <% @image_item.each do |item| %>
-    <div class="col-md-4 item_data" style="padding-top: 20px;">
+    <div class="col-md-4 image_item_data" style="padding-top: 20px;">
       <div class="card">
         <div class="thumbnail" style="margin-top:10px">
           <h1 class="a" style="text-align:center;">
@@ -21,7 +21,7 @@
           </h5>
           <hr/>
           <div style="text-align:center;">
-              <a href="#" class="btn btn-primary" id="order_button" data-itemid="<%= item.id %>" data-itemtitle="<%= item.title %>" data-itemprice="<%= item.price %>">구매하기</a>
+              <a href="#" class="btn btn-primary" id="purchase_button" data-itemid="<%= item.id %>" data-itemtitle="<%= item.title %>" data-itemprice="<%= item.price %>">구매하기</a>
               <%= link_to "상세정보 보기",  image_item_path(item.id), method: "get", class: "btn btn-primary", id: "showItem" %>
           </div>
         </div>

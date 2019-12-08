@@ -32,8 +32,10 @@ gem 'kaminari'
 # Google OAuth
 gem 'omniauth-oauth2'
 gem 'omniauth-google-oauth2'
-## API key security
+# API key security
 gem 'figaro'
+# Upload Video
+gem "paperclip-ffmpeg"
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server

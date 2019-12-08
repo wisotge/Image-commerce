@@ -1,81 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <title>Image Commerce</title>
-  </head>
-
-  <!--TIPS-->
-  <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
-  <body>
-    <div>
-      <div class="boxed">
-        <div class="container">
-          <div class="tab">
-            <span class="font-size:20px">
-              <!-- Page Title -->
+<div>
+  <div class="boxed">
+    <div class="container">
+      <div class="tab">
+        <span class="font-size:20px">
+          <!-- Page Title -->
+        </span>
+        <span class="text-right" style="font-size:18px text-align:right;">
+          <div class="dropdown-menus">
+            <span class="dropdown">
+              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">타입별</button>
+              <div class="dropdown-menu">
+                <%= link_to "유료", main_index_path(:type => "pay"), :class => "dropdown-item", remote: true %>
+                <%= link_to "무료", main_index_path(:type => "free"), :class => "dropdown-item", remote: true %>
+              </div>
             </span>
-            <span class="text-right" style="font-size:18px text-align:right;">
-              <div class="dropdown-menus">
-                <span class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">타입별</button>
-                  <div class="dropdown-menu">
-                    <%= link_to "유료", main_index_path(:type => "pay"), :class => "dropdown-item", remote: true %>
-                    <%= link_to "무료", main_index_path(:type => "free"), :class => "dropdown-item", remote: true %>
-                  </div>
-                </span>
-                <span class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">가격순</button>
-                  <div class="dropdown-menu">
-                    <%= link_to "높은순", main_index_path(:type => "price", :order => "high"), :class => "dropdown-item", remote: true %>
-                    <%= link_to "낮은순", main_index_path(:type => "price", :order => "low"), :class => "dropdown-item", remote: true %>
-                  </div>
-                </span>
-                <span class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">등록일</button>
-                  <div class="dropdown-menu">
-                    <%= link_to "최신순", main_index_path(:type => "date", :order => "recent"), :class => "dropdown-item", remote: true %>
-                    <%= link_to "지난순", main_index_path(:type => "date", :order => "before"), :class => "dropdown-item", remote: true %>
-                  </div>
-                </span>
+            <span class="dropdown">
+              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">가격순</button>
+              <div class="dropdown-menu">
+                <%= link_to "높은순", main_index_path(:type => "price", :order => "high"), :class => "dropdown-item", remote: true %>
+                <%= link_to "낮은순", main_index_path(:type => "price", :order => "low"), :class => "dropdown-item", remote: true %>
+              </div>
+            </span>
+            <span class="dropdown">
+              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">등록일</button>
+              <div class="dropdown-menu">
+                <%= link_to "최신순", main_index_path(:type => "date", :order => "recent"), :class => "dropdown-item", remote: true %>
+                <%= link_to "지난순", main_index_path(:type => "date", :order => "before"), :class => "dropdown-item", remote: true %>
               </div>
             </span>
           </div>
-          <br/>
-          <div id="image-item-list">
-            <%= render partial: "image_items/index" %>
-          </div>
-          <!--
-          <div id="modal">
-          </div>
-        -->
-          <!--
-          <div id="item_search">
-          </div>
-        -->
-        </div>
-
-        <!--===================================================-->
-        <!--END MAIN NAVIGATION-->
-
+        </span>
       </div>
-
-      <!-- FOOTER -->
-      <!--===================================================-->
-      <!--===================================================-->
-      <!-- END FOOTER -->
-
+      <br/>
+      <div id="image-item-list">
+        <%= render partial: "image_items/index" %>
+      </div>
+      <div id="purchase-modal">
+        <%= render partial: "main/purchase" %>
+      </div>
+      <!--
+      <div id="modal">
+      </div>
+    -->
+      <!--
+      <div id="item_search">
+      </div>
+    -->
     </div>
+
     <!--===================================================-->
-    <!-- END OF CONTAINER -->
+    <!--END MAIN NAVIGATION-->
 
-    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+  </div>
 
-    <script type="text/javascript">
-    </script>
-  </body>
-</html>
+  <!-- FOOTER -->
+  <!--===================================================-->
+  <!--===================================================-->
+  <!-- END FOOTER -->
+
+</div>
+<!--===================================================-->
+<!-- END OF CONTAINER -->
+
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<script type="text/javascript">
+  $(".image_item_data").on("click", "#purchase_button", function(){
+     $("#purchase_modal").show();
+     $("#purchase-image").val($(this).data("itemtitle"));
+     $("#purchase-imageid").val($(this).data("itemid"));
+     $("#holding-amount").val("<%= current_user.chocomush %>")
+     $("#purchase-amount").val($(this).data("itemprice"));
+  })
+
+  $("#close_button").on("click", function(){
+    $("#purchase_modal").hide();
+    $("#purchase-image").val('');
+    $("#purchase-imageid").val('');
+    $("#purchase-amount").val('');
+  })
+
+  $("#purchase_confirm_button").on("click", function(){
+    var holdingAmount = $("#holding-amount").val();
+    var purchaseAmount = $("#purchase-amount").val();
+    purchaseAmount = parseInt(purchaseAmount);
+    if(holdingAmount < purchaseAmount){
+      alert("보유금액이 부족합니다.");
+      var url = "/charge"
+      $(location).attr('href', url);
+    }else{
+      $.ajax({
+        type: "POST",
+        url: "<%= orders_path %>",
+        data: {chocomush: purchaseAmount,
+               id: $("#purchase-imageid").val()},
+        dataType: "json",
+        beforeSend : function(xhr) {
+          xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+        },
+        success: function (data) {
+          $("#purchase_modal").hide();
+          location.href = "/";
+        },
+        error : function(data){
+          $("#search_error").show();
+        }
+      });
+    }
+  })
+</script>

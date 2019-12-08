@@ -1,4 +1,4 @@
-<div class="container">
+<div class="charge-container">
   <%= form_for @current_user, :url => main_chocomush_path, method: :put do |f| %>
   <div class="">
     현재 잔액 : <%= @current_user.chocomush %>
@@ -24,7 +24,7 @@
   })
 </script>
 <style>
-    .container {
+    .charge-container {
       width: 100%;
       margin: 0 auto;
       text-align: center;

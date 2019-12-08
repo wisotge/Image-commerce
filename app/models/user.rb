@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable
 
   has_many :image_items, dependent: :nullify
-
+  has_many :orders, dependent: :nullify
+  
   def self.find_for_oauth(auth, current_user)
         # 이미 있는 계정인지 확인한다.
         email = auth.info.email

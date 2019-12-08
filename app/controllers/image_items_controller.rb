@@ -10,6 +10,11 @@ class ImageItemsController < ApplicationController
     if @image_item.price.nil?
       @image_item.price = 0
     end
+
+    if @image_item.status.nil?
+      @image_item.status = 0
+    end
+
     if @image_item.save
       flash[:success] = "성공적으로 이미지를 업로드하였습니다."
     else
@@ -41,6 +46,6 @@ class ImageItemsController < ApplicationController
 
   private
   def image_item_params
-    params.require(:image_item).permit(:title, :imgtype, :price, :repimg, :user_id, :description)
+    params.require(:image_item).permit(:title, :imgtype, :price, :repimg, :user_id, :description, :status)
   end
 end

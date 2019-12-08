@@ -10,4 +10,5 @@
   put 'main/chocomush', to: "main#addBalance"
   resources :image_items
   resources :reviews
+  resources :orders
 end
