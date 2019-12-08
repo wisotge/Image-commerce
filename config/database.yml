@@ -80,6 +80,8 @@ test:
 #
 production:
   <<: *default
-  database: Image-commerce_production
-  username: Image-commerce
-  password: <%= ENV['IMAGE-COMMERCE_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
