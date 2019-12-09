@@ -1,8 +1,6 @@
 # ImageCommerce
 visit https://stark-badlands-07065.herokuapp.com/
 
-## Install
-
 ### Clone the repository
 
 ```shell
@@ -10,18 +8,12 @@ git clone https://github.com/9oominsoo/Image-commerce.git
 cd Image-commerce
 ```
 
-### Ruby version
-
-```shell
-2.4.2
-```
-
-### Database 
+### Requirements
 
 ```
-PostgreSql
+ruby 2.4.2
+PostgreSQL
 ```
-
 
 ### Install dependencies
 
