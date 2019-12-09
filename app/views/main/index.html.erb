@@ -47,7 +47,6 @@
 <script type="text/javascript">
   $(".image_item_data").on("click", "#purchase_button", function(){
      imgtype = $(this).data("itemprice");
-     console.log(imgtype);
      if(imgtype > 0){
        $("#pay-purchase_modal").show();
        $("#pay-purchase-image").val($(this).data("itemtitle"));
@@ -59,16 +58,16 @@
      }
   })
 
-  $("#close_button").on("click", function(){
+  $("#pay_close_button").on("click", function(){
     $("#pay-purchase_modal").hide();
     $("#pay-purchase-image").val('');
     $("#pay-purchase-imageid").val('');
     $("#pay-purchase-amount").val('');
   })
 
-  $("#purchase_confirm_button").on("click", function(){
-    var holdingAmount = $("#holding-amount").val();
-    var purchaseAmount = $("#purchase-amount").val();
+  $("#pay_purchase_confirm_button").on("click", function(){
+    var holdingAmount = $("#pay-holding-amount").val();
+    var purchaseAmount = $("#pay-purchase-amount").val();
     purchaseAmount = parseInt(purchaseAmount);
     if(holdingAmount < purchaseAmount){
       alert("보유금액이 부족합니다.");
@@ -79,13 +78,14 @@
         type: "POST",
         url: "<%= orders_path %>",
         data: {chocomush: purchaseAmount,
-               id: $("#purchase-imageid").val()},
+               id: $("#pay-purchase-imageid").val()},
         dataType: "json",
         beforeSend : function(xhr) {
           xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
         },
         success: function (data) {
-          $("#purchase_modal").hide();
+          console.log("success");
+          $("#pay_purchase_modal").hide();
           location.href = "/";
         },
         error : function(data){
