@@ -17,17 +17,17 @@
     <!-- data per Category -->
     <% if @info_type == "upload" %>
       <!-- 내가 업로드한 상품 -->
-      <% @image_item.each do |item| %>
+      <% @image_item.each do |upload_item| %>
         <tr>
-          <td><%= image_tag item.repimg.url ,style: 'width: 150px; height: 150px;' unless item.repimg.url.nil? %></td>
-          <td><%= item.title %></td>
-          <td><%= item.price %></td>
-          <td><%= item.created_at %></td>
-          <td><%= link_to "삭제", image_item_path(:id => item.id), method: :delete, remote: true, :class => "btn btn-sm btn-primary"%></td>
+          <td><%= image_tag upload_item.repimg.url ,style: 'width: 150px; height: 150px;' unless upload_item.repimg.url.nil? %></td>
+          <td><%= upload_item.title %></td>
+          <td><%= upload_item.price %></td>
+          <td><%= upload_item.created_at %></td>
+          <td><%= link_to "삭제", image_item_path(:id => upload_item.id), method: :delete, remote: true, :class => "btn btn-sm btn-primary"%></td>
        </tr>
       <% end %>
     <% else %>
-      <% @order_item.each do |order_item| %>
+      <% @image_item.each do |order_item| %>
         <tr>
           <td><%= image_tag order_item.image_item.repimg.url ,style: 'width: 150px; height: 150px;'%></td>
           <td><%= order_item.image_item.title %></td>

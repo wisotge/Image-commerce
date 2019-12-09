@@ -84,6 +84,12 @@
             <div class="tab-content" id="mylist">
               <%= render partial: "main/mylist" %>
             </div>
+            <br/><br/>
+            <div>
+              <ul class="pagination">
+                <%= paginate @image_item %>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

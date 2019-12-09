@@ -37,7 +37,7 @@ class MainController < ApplicationController
     if @info_type == "upload"
       @image_item = ImageItem.where(user_id: current_user.id).page(params[:page]).per(5)
     else
-      @order_item = current_user.orders.order("created_at DESC").page(params[:page]).per(5)
+      @image_item = current_user.orders.order("created_at DESC").page(params[:page]).per(5)
     end
   end
 
