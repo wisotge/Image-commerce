@@ -1,27 +1,51 @@
-# README
+# ImageCommerce
+visit https://stark-badlands-07065.herokuapp.com/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Install
 
-Things you may want to cover:
+### Clone the repository
 
-* Ruby version
-> ruby '2.4.2'
-* System dependencies
+```shell
+git clone https://github.com/9oominsoo/Image-commerce.git
+cd Image-commerce
+```
 
-* Configuration
+### Ruby version
 
-* Database creation
-  
-* Database initialization
+```shell
+2.4.2
+```
 
-* How to run the test suite
+### Database 
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+PostgreSql
+```
 
-* Deployment instructions
 
-* bundle install
-bundle exec rake db:create
-bundle exec rake db:migrate
-bundle exec rails server
+### Install dependencies
+
+Using [Bundler](https://github.com/bundler/bundler) 
+
+```shell
+bundle install
+```
+
+### Set environment variables
+
+To use Google OAuth2 fill out config/application.yml
+```
+GOOGLE_CLIENT_ID:
+GOOGLE_CLIENT_SECRET:
+```
+### Initialize the database
+
+```shell
+rails db:create db:migrate 
+```
+
+## Serve
+
+```shell
+rails s
+```
