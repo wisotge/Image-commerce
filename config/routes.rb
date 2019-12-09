@@ -8,7 +8,13 @@
   get 'charge', to: "main#charge"
   get 'main/paymodule'
   put 'main/chocomush', to: "main#addBalance"
-  resources :image_items
+
+  resources :image_items do
+  member do
+      put :add_video
+    end
+  end
+
   resources :reviews
   resources :orders
 end

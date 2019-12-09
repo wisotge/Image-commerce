@@ -9,6 +9,9 @@
                 <% if @image_item.repimg %>
                   <%= image_tag @image_item.repimg.url ,style: 'width: 320px; height: 300px;' unless @image_item.repimg.url.nil? %>
                 <% else %>
+                  <% if @image_item.video? %>
+                  <%= video_tag(@image_item.video.url(:medium), controls: true, size: "543x353") %>
+                  <% end %>
                   <i class="fas fa-camera-retro fa-border fa-3x fa-fw" style="font-size:250px;" aria-hidden="true"></i>
                 <% end %>
               </td>

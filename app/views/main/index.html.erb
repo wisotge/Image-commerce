@@ -38,46 +38,32 @@
       <div id="purchase-modal">
         <%= render partial: "main/purchase" %>
       </div>
-      <!--
-      <div id="modal">
-      </div>
-    -->
-      <!--
-      <div id="item_search">
-      </div>
-    -->
     </div>
-
-    <!--===================================================-->
-    <!--END MAIN NAVIGATION-->
-
   </div>
-
-  <!-- FOOTER -->
-  <!--===================================================-->
-  <!--===================================================-->
-  <!-- END FOOTER -->
-
 </div>
-<!--===================================================-->
-<!-- END OF CONTAINER -->
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <script type="text/javascript">
   $(".image_item_data").on("click", "#purchase_button", function(){
-     $("#purchase_modal").show();
-     $("#purchase-image").val($(this).data("itemtitle"));
-     $("#purchase-imageid").val($(this).data("itemid"));
-     $("#holding-amount").val("<%= current_user.chocomush %>")
-     $("#purchase-amount").val($(this).data("itemprice"));
+     imgtype = $(this).data("itemprice");
+     console.log(imgtype);
+     if(imgtype > 0){
+       $("#pay-purchase_modal").show();
+       $("#pay-purchase-image").val($(this).data("itemtitle"));
+       $("#pay-purchase-imageid").val($(this).data("itemid"));
+       $("#pay-holding-amount").val("<%= current_user.chocomush %>")
+       $("#pay-purchase-amount").val($(this).data("itemprice"));
+     }else {
+       $("#free-purchase_modal").show();
+     }
   })
 
   $("#close_button").on("click", function(){
-    $("#purchase_modal").hide();
-    $("#purchase-image").val('');
-    $("#purchase-imageid").val('');
-    $("#purchase-amount").val('');
+    $("#pay-purchase_modal").hide();
+    $("#pay-purchase-image").val('');
+    $("#pay-purchase-imageid").val('');
+    $("#pay-purchase-amount").val('');
   })
 
   $("#purchase_confirm_button").on("click", function(){

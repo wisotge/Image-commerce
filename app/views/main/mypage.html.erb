@@ -1,110 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <title>My Page</title>
-    <style type="text/css">
-      .hidden-right {
-        border-right: hidden;
-      }
-
-      .hidden-bottom {
-        border-bottom: hidden;
-      }
-
-      .thbgcolor {
-        background-color: lightgrey;
-      }
-
-      .image-size {
-        font-size:35px;
-        height: 50px;
-        width:50px;
-      }
-
-    </style>
-  </head>
-
-  <body>
-    <div class="container">
-      <div id="container">
-        <div class="boxed">
-          <div class="panel" id="user-section">
-            <div class="panel pos-rel card">
-              <div class="pad-all text-center" style="border:2px solid black; font-size: 11pt;">
-                <table border="1" width="1100" height="150">
-                  <tr>
-                    <td width="20%" rowspan="3">
-                      <i class="fas fa-camera-retro fa-border fa-3x fa-fw" style="font-size:150px;" aria-hidden="true"></i>
-                    </td>
-                    <td class="hidden-bottom">
-                      <strong><%= current_user.email %> (<%= current_user.name %>님)</strong>
-                      &nbsp;
-                      <%= link_to "회원정보 수정", edit_user_registration_path, :class => "btn btn-primary btn-sm" %>
-                    </td>
-                    <td class="hidden-bottom">
-                      <strong>업로드한 이미지</strong>
-                    </td>
-                    <td class="hidden-right hidden-bottom">
-                      <strong>보유 Chocomush</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="hidden-bottom">010-1234-5678</td>
-                    <td rowspan="2"><%= current_user.image_items.size %></td>
-                    <% if current_user.chocomush == nil %>
-                      <td class="hidden-right" rowspan="2">0</td>
-                    <% else %>
-                      <td class="hidden-right" rowspan="2"><%= current_user.chocomush %></td>
-                    <% end %>
-                  </tr>
-                  <tr>
-                    <td>경기도 수원시 영통구 123</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br/><br/>
-        <div class="boxed">
-          <div class="col">
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <%= link_to "구매 이미지", main_mypage_path(type: "freedownload"), :class => "nav-link", :data_toggle => "tab" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "업로드한 이미지", main_mypage_path(:type => "upload"), :class => "nav-link", :data_toggle => "tab" %>
-              </li>
-            </ul>
-            <div class="tab-content" id="mylist">
-              <%= render partial: "main/mylist" %>
-            </div>
-            <br/><br/>
-            <div>
-              <ul class="pagination">
-                <%= paginate @image_item %>
-              </ul>
-            </div>
+<div class="container">
+  <div id="container">
+    <div class="boxed">
+      <div class="panel" id="user-section">
+        <div class="panel pos-rel card">
+          <div class="pad-all text-center" style="border:2px solid black; font-size: 11pt;">
+            <table border="1" width="1100" height="150">
+              <tr>
+                <td width="20%" rowspan="3">
+                  <i class="fas fa-camera-retro fa-border fa-3x fa-fw" style="font-size:150px;" aria-hidden="true"></i>
+                </td>
+                <td class="hidden-bottom">
+                  <strong><%= current_user.email %> (<%= current_user.name %>님)</strong>
+                  &nbsp;
+                  <%= link_to "회원정보 수정", edit_user_registration_path, :class => "btn btn-primary btn-sm" %>
+                </td>
+                <td class="hidden-bottom">
+                  <strong>업로드한 이미지</strong>
+                </td>
+                <td class="hidden-right hidden-bottom">
+                  <strong>보유 Chocomush</strong>
+                </td>
+              </tr>
+              <tr>
+                <td class="hidden-bottom">010-1234-5678</td>
+                <td rowspan="2"><%= current_user.image_items.size %></td>
+                <% if current_user.chocomush == nil %>
+                  <td class="hidden-right" rowspan="2">0</td>
+                <% else %>
+                  <td class="hidden-right" rowspan="2"><%= current_user.chocomush %></td>
+                <% end %>
+              </tr>
+              <tr>
+                <td>경기도 수원시 영통구 123</td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
     </div>
-  </body>
+    <br/><br/>
+    <div class="boxed">
+      <div class="col">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <%= link_to "구매 이미지", main_mypage_path(type: "freedownload"), :class => "nav-link", :data_toggle => "tab" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "업로드한 이미지", main_mypage_path(:type => "upload"), :class => "nav-link", :data_toggle => "tab" %>
+          </li>
+        </ul>
+        <div class="tab-content" id="mylist">
+          <%= render partial: "main/mylist" %>
+        </div>
+        <br/>
+            <div class="pagination">
+              <%= paginate @image_item %>
+            </div>
+        <br/>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-          localStorage.setItem('activeTab', $(e.target).attr('href'));
-      });
-      var activeTab = localStorage.getItem('activeTab');
-      if(activeTab){
-          $('#myTab a[href="' + activeTab + '"]').tab('show');
-      }
+<style type="text/css">
+  .hidden-right {
+    border-right: hidden;
+  }
+
+  .hidden-bottom {
+    border-bottom: hidden;
+  }
+
+  .thbgcolor {
+    background-color: lightgrey;
+  }
+
+  .image-size {
+    font-size:35px;
+    height: 50px;
+    width:50px;
+  }
+
+  * {
+    margin: auto;
+  }
+</style>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
     });
-  </script>
-</html>
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab){
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
+  });
+</script>

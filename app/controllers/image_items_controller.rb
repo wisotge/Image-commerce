@@ -44,8 +44,16 @@ class ImageItemsController < ApplicationController
     @image_item.destroy
   end
 
+  def add_video
+    video = params[:video]
+    image = image_item.find(params[:id])
+    image.video.build(params[:video])
+    image.save
+  end
+
   private
   def image_item_params
     params.require(:image_item).permit(:title, :imgtype, :price, :repimg, :user_id, :description, :status)
   end
+
 end

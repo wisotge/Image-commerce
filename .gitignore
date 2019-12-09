@@ -21,6 +21,7 @@
 /yarn-error.log
 
 /public/assets
+/public/uploads
 .byebug_histor
 
 # Elastic Beanstalk Files

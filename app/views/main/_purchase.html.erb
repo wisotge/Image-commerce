@@ -41,7 +41,7 @@
        }
 </style>
 
-<div class="modal" id="purchase_modal">
+<div class="modal" id="pay-purchase_modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -59,10 +59,21 @@
                 결제 금액<input type="text" placeholder="Payment amount" id="purchase-amount" class="form-control"><br/>
               </div>
             </div>
-
             <div class="modal-footer">
                 <button class="btn btn-primary" type="button" id="purchase_confirm_button">구매 하기</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="free-purchase_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Play Advertisement -->
+          <button type="button" class="close" id="close_button" data-dismiss="modal">x</button>
+          <div class="modal-footer">
+              <button class="btn btn-primary" type="button" id="purchase_confirm_button">구매 하기</button>
+          </div>
         </div>
     </div>
 </div>
