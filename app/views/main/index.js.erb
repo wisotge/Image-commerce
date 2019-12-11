@@ -2,4 +2,55 @@ $(function(){
   var html = "<%= escape_javascript(render(partial: 'image_items/index')) %>";
   $("#image-item-list").html(html);
   console.log("succesfully render!");
+
+  $(".image_item_data").on("click", "#purchase_button", function(){
+     imgtype = $(this).data("itemprice");
+     if(imgtype > 0){
+       $("#purchase_modal").show();
+       $("#purchase-image").val($(this).data("itemtitle"));
+       $("#purchase-imageid").val($(this).data("itemid"));
+       $("#holding-amount").val("<%= current_user.chocomush %>")
+       $("#purchase-amount").val($(this).data("itemprice"));
+     }else {
+       $("#purchase_modal").show();
+     }
+  })
+
+  $("#close_button").on("click", function(){
+    $("#purchase_modal").hide();
+    $("#purchase-image").val('');
+    $("#purchase-imageid").val('');
+    $("#purchase-amount").val('');
+  })
+
+  $("#purchase_confirm_button").on("click", function(){
+    var holdingAmount = $("#holding-amount").val();
+    var purchaseAmount = $("#purchase-amount").val();
+    purchaseAmount = parseInt(purchaseAmount);
+    if(holdingAmount < purchaseAmount){
+      alert("보유금액이 부족합니다.");
+      var url = "/charge"
+      $(location).attr('href', url);
+    }else{
+      $.ajax({
+        type: "POST",
+        url: "<%= orders_path %>",
+        data: {chocomush: purchaseAmount,
+               id: $("#purchase-imageid").val()},
+        dataType: "json",
+        beforeSend : function(xhr) {
+          xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+        },
+        success: function (data) {
+          console.log("success");
+          $("#purchase_modal").hide();
+          location.href = "/";
+        },
+        error : function(data){
+          $("#search_error").show();
+        }
+      });
+    }
+  })
+  
 })

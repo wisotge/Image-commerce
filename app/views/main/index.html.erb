@@ -68,7 +68,6 @@
   $("#purchase_confirm_button").on("click", function(){
     var holdingAmount = $("#holding-amount").val();
     var purchaseAmount = $("#purchase-amount").val();
-    console.log(purchaseAmount)
     purchaseAmount = parseInt(purchaseAmount);
     if(holdingAmount < purchaseAmount){
       alert("보유금액이 부족합니다.");
