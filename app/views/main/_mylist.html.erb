@@ -23,8 +23,7 @@
           <td><%= upload_item.title %></td>
           <td><%= upload_item.price %></td>
           <td><%= upload_item.created_at %></td>
-          <td><%= link_to "삭제", image_item_path(:id => upload_item.id), :method => "delete", remote: true, :class => "btn btn-sm btn-primary"%></td>
-          <!-- remote: true -->
+          <td><%= link_to "삭제", image_item_path(:id => upload_item.id), method: :delete, remote: true, :class => "btn btn-sm btn-primary"%></td>
        </tr>
       <% end %>
     <% else %>
