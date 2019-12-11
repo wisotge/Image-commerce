@@ -4,16 +4,13 @@ $(function(){
   console.log("succesfully render!");
 
   $(".image_item_data").on("click", "#purchase_button", function(){
-     imgtype = $(this).data("itemprice");
-     if(imgtype > 0){
+    $(".image_item_data").on("click", "#purchase_button", function(){
        $("#purchase_modal").show();
        $("#purchase-image").val($(this).data("itemtitle"));
        $("#purchase-imageid").val($(this).data("itemid"));
        $("#holding-amount").val("<%= current_user.chocomush %>")
        $("#purchase-amount").val($(this).data("itemprice"));
-     }else {
-       $("#purchase_modal").show();
-     }
+    })
   })
 
   $("#close_button").on("click", function(){
@@ -52,5 +49,5 @@ $(function(){
       });
     }
   })
-  
+
 })
