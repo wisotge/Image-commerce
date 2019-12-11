@@ -41,7 +41,14 @@ class ImageItemsController < ApplicationController
 
   def destroy
     @image_item = ImageItem.find(params[:id])
-    @image_item.destroy
+    if orders = Order.find_by(image_item_id: @image_item.id)
+      flash[:error] = "삭제할 수 없는 이미지입니다."
+    else
+      @image_item.destroy
+      flash[:success] = "성공적으로 이미지를 삭제하였습니다."
+    end
+    redirect_to "main_mypage_path"
+
   end
 
   def add_video
