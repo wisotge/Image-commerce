@@ -1,5 +1,5 @@
   <div class="row">
-  <% @image_item.each do |item| %>
+  <% @image_items.each do |item| %>
     <div class="col-md-4 image_item_data" style="padding-top: 20px;">
       <div class="card">
         <div class="thumbnail" style="margin-top:10px">
@@ -32,6 +32,6 @@
 <br/><br/>
 <div>
   <ul class="pagination">
-    <%= paginate @image_item %>
+    <%= paginate @image_items %>
   </ul>
 </div>

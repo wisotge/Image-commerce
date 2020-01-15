@@ -17,15 +17,15 @@
             <span class="dropdown">
               <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">가격순</button>
               <div class="dropdown-menu">
-                <%= link_to "높은순", main_index_path(:type => "price", :order => "high"), :class => "dropdown-item", remote: true %>
-                <%= link_to "낮은순", main_index_path(:type => "price", :order => "low"), :class => "dropdown-item", remote: true %>
+                <%= link_to "높은순", main_index_path(:type => "price", :order => "desc"), :class => "dropdown-item", remote: true %>
+                <%= link_to "낮은순", main_index_path(:type => "price", :order => "asc"), :class => "dropdown-item", remote: true %>
               </div>
             </span>
             <span class="dropdown">
               <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">등록일</button>
               <div class="dropdown-menu">
-                <%= link_to "최신순", main_index_path(:type => "date", :order => "recent"), :class => "dropdown-item", remote: true %>
-                <%= link_to "지난순", main_index_path(:type => "date", :order => "before"), :class => "dropdown-item", remote: true %>
+                <%= link_to "최신순", main_index_path(:type => "created_at", :order => "desc"), :class => "dropdown-item", remote: true %>
+                <%= link_to "지난순", main_index_path(:type => "created_at", :order => "asc"), :class => "dropdown-item", remote: true %>
               </div>
             </span>
           </div>
@@ -33,7 +33,7 @@
       </div>
       <br/>
       <div id="image-item-list">
-        <%= render partial: "image_items/index" %>
+        <%= render partial: "image_items/image_items" %>
       </div>
       <div id="purchase-modal">
         <%= render partial: "main/purchase" %>

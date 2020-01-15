@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_08_063941) do
+ActiveRecord::Schema.define(version: 2020_01_15_084903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2019_12_08_063941) do
   create_table "image_items", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "repimg"
@@ -28,7 +27,8 @@ ActiveRecord::Schema.define(version: 2019_12_08_063941) do
     t.string "video_content_type"
     t.bigint "video_file_size"
     t.datetime "video_updated_at"
-    t.integer "status"
+    t.integer "hit", default: 0
+    t.integer "price", default: 0
     t.index ["user_id"], name: "index_image_items_on_user_id"
   end
 
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2019_12_08_063941) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.integer "chocomush"
+    t.integer "chocomush", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

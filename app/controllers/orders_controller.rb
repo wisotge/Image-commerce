@@ -2,15 +2,13 @@ class OrdersController < ApplicationController
 
   def create
     #as purchase function
-    item_id = params[:id]
-    if current_user.orders.find_by(image_item_id: item_id)
+    if current_user.orders.find_by(image_item_id: params[:id])
       flash[:notice] = "이미 구매하신 상품입니다."
     elsif
-      order = Order.create(:user_id => current_user.id, :total => params[:chocomush])
-      deduction_chocomush = params[:chocomush]
-      @image_item = ImageItem.find(item_id)
+      order = Order.create(user_id: current_user.id, total: params[:chocomush])
+      @image_item = ImageItem.find(params[:id])
       @image_item.status += 1
-      current_user.chocomush = current_user.chocomush - deduction_chocomush.to_i
+      current_user.chocomush -= params[:chocomush].to_i
       order.image_item_id = @image_item.id
       if order.save
           @image_item.save
