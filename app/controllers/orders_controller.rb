@@ -1,27 +1,14 @@
 class OrdersController < ApplicationController
 
   def create
-    #as purchase function
-    if current_user.orders.find_by(image_item_id: params[:id])
-      flash[:notice] = "이미 구매하신 상품입니다."
-    elsif
-      order = Order.create(user_id: current_user.id, total: params[:chocomush])
-      @image_item = ImageItem.find_by(id: params[:id])
-
-      current_user.chocomush -= params[:chocomush].to_i
-      order.image_item_id = @image_item.id
-      if order.save
-          @image_item.save
-          current_user.save
-          flash[:success] = "해당 상품을 구매하셨습니다."
-      else
-          flash[:error] = "해당 상품을 구매할 수 없습니다."
-      end
-    end
+    msg = "이미 구매하신 상품입니다."
+    current_user.orders.create_with(total: params[:chocomush]).find_or_create_by(user_id: current_user.id, image_item_id: params[:id]) do |order|
+      order.user.chocomush -= params[:chocomush].to_i
+      if order.user.save
+        msg = "해당 상품을 구매하셨습니다."
+      end 
+    end 
+    flash[:success] = msg
   end
-
-  def temp 
-    (current_user.orders.find_by(image_item_id: params[:id])) ? msg = "이미 구매하신 상품입니다." : msg = "해당 상품을 구매하셨습니다."
-  end 
 
 end
