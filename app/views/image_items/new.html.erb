@@ -3,9 +3,9 @@
     <div class="col-md-12">
       <%= form_for @image_item do |f| %>
       <div>
-        <%= f.hidden_field :user_id, class: :"form-control", value: current_user.id%>
+        <%= f.hidden_field :user_id, class: "form-control", value: current_user.id%>
         <%= f.label :ImageTitle %><br/>
-        <%= f.text_field :title, class: :"form-control", cols: :"30", rows: :"10", placeholder: :"title" %>
+        <%= f.text_field :title, class: "form-control", cols: "30", rows: "10", placeholder: "title" %>
       </div>
       <br/>
       <div class="checkbox">
@@ -18,22 +18,22 @@
       <br/>
       <div id="image-price">
         <%= f.label :ImagePrice %><br/>
-        <%= f.text_field :price, class: :"form-control", cols: :"30", rows: :"10", placeholder: :"price" %>
+        <%= f.text_field :price, class: "form-control", cols: "30", rows: "10", placeholder: "price" %>
       </div>
       <br/>
       <div class="upload-preview">
         <img style: 'width: 200; height: 200;'/>
         <br/><br/>
-        <%= f.file_field :repimg, class: :"form-control file", cols: :"30", rows: :"10", placeholder: :"Image" %>
+        <%= f.file_field :repimg, class: "form-control file", cols: "30", rows: "10", placeholder: "Image" %>
       </div>
       <!--<input class="file" name="logo" type="file">-->
       <br/>
       <%= f.label :ImageDescription %><br/>
-      <%= tinymce :language => "en" %>
-      <%= f.text_area :description, class: :"form-control tinymce", cols: :"30", rows: :"15", placeholder: :"body" %>
+      <%= tinymce language:  "en" %>
+      <%= f.text_area :description, class: "form-control tinymce", cols: "30", rows: "15", placeholder: "body" %>
       <br/>
       <div class="actions">
-        <%= f.submit "등록", :class => 'btn btn-primary btn-block' %>
+        <%= f.submit "등록", class: 'btn btn-primary btn-block' %>
       </div>
     <% end %>
     <br/>

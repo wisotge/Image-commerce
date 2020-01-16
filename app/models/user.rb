@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :image_items, dependent: :nullify
   has_many :orders, dependent: :nullify
+  PARAMETERS = [:name]
   
   def self.find_for_oauth(auth, current_user)
         # 이미 있는 계정인지 확인한다.
