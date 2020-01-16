@@ -1,4 +1,6 @@
   Rails.application.routes.draw do
+  get 'user_items/create'
+  get 'user_items/destroy'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -18,4 +20,5 @@
 
   resources :reviews
   resources :orders
+  resources :user_items, only: [:create, :destroy]
 end

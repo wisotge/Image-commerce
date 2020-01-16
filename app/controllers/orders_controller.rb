@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
     elsif
       order = Order.create(user_id: current_user.id, total: params[:chocomush])
       @image_item = ImageItem.find_by(id: params[:id])
+
       current_user.chocomush -= params[:chocomush].to_i
       order.image_item_id = @image_item.id
       if order.save
@@ -18,5 +19,9 @@ class OrdersController < ApplicationController
       end
     end
   end
+
+  def temp 
+    (current_user.orders.find_by(image_item_id: params[:id])) ? msg = "이미 구매하신 상품입니다." : msg = "해당 상품을 구매하셨습니다."
+  end 
 
 end
