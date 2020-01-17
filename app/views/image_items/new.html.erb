@@ -8,14 +8,6 @@
         <%= f.text_field :title, class: "form-control", cols: "30", rows: "10", placeholder: "title" %>
       </div>
       <br/>
-      <div class="checkbox">
-        <%= f.label :imgtype %><br/>
-        <%= f.radio_button :imgtype, "pay"%>
-        <%= f.label :imgtype, "유료", value: "pay"%>
-        <%= f.radio_button :imgtype, "free"%>
-        <%= f.label :imgtype, "무료", value: "free"%>
-      </div>
-      <br/>
       <div id="image-price">
         <%= f.label :ImagePrice %><br/>
         <%= f.text_field :price, class: "form-control", cols: "30", rows: "10", placeholder: "price" %>

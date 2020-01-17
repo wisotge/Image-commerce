@@ -4,7 +4,7 @@ class MainController < ApplicationController
   def index
     sort_type = params[:type]
     if ["pay", "free"].include?(sort_type)
-      @image_items =  ImageItem.where(imgtype: sort_type)
+      @image_items = (sort_type == "pay") ? ImageItem.pay_images : ImageItem.free_images
     elsif ["price", "created_at"].include?(sort_type)
       @image_items =  ImageItem.order("#{sort_type} #{params[:order] == "desc" ? "DESC" : "ASC"}")
     else 

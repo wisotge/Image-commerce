@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_143123) do
+ActiveRecord::Schema.define(version: 2020_01_17_025841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_01_16_143123) do
     t.datetime "updated_at", null: false
     t.string "repimg"
     t.bigint "user_id"
-    t.string "imgtype"
     t.string "video_file_name"
     t.string "video_content_type"
     t.bigint "video_file_size"
