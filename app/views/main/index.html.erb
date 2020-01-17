@@ -1,43 +1,38 @@
-<div>
-  <div class="boxed">
-    <div class="container">
-      <div class="tab">
-        <span class="font-size:20px">
-          <!-- Page Title -->
-        </span>
-        <span class="text-right" style="font-size:18px text-align:right;">
-          <div class="dropdown-menus">
-            <span class="dropdown">
-              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">타입별</button>
-              <div class="dropdown-menu">
-                <%= link_to "유료", main_index_path(:type => "pay"), :class => "dropdown-item", remote: true %>
-                <%= link_to "무료", main_index_path(:type => "free"), :class => "dropdown-item", remote: true %>
-              </div>
-            </span>
-            <span class="dropdown">
-              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">가격순</button>
-              <div class="dropdown-menu">
-                <%= link_to "높은순", main_index_path(:type => "price", :order => "desc"), :class => "dropdown-item", remote: true %>
-                <%= link_to "낮은순", main_index_path(:type => "price", :order => "asc"), :class => "dropdown-item", remote: true %>
-              </div>
-            </span>
-            <span class="dropdown">
-              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">등록일</button>
-              <div class="dropdown-menu">
-                <%= link_to "최신순", main_index_path(:type => "created_at", :order => "desc"), :class => "dropdown-item", remote: true %>
-                <%= link_to "지난순", main_index_path(:type => "created_at", :order => "asc"), :class => "dropdown-item", remote: true %>
-              </div>
-            </span>
-          </div>
-        </span>
-      </div>
-      <br/>
-      <div id="image-item-list">
-        <%= render partial: "image_items/image_items" %>
-      </div>
-      <div id="purchase-modal">
-        <%= render partial: "main/purchase" %>
-      </div>
+<div class="boxed">
+  <div class="container">
+    <div class="tab">
+      <span class="text-right" style="font-size:18px text-align:right;">
+        <div class="dropdown-menus">
+          <span class="dropdown">
+            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">타입별</button>
+            <div class="dropdown-menu">
+              <%= link_to "유료", main_index_path(type: "pay"), class: "dropdown-item", remote: true %>
+              <%= link_to "무료", main_index_path(type: "free"), class: "dropdown-item", remote: true %>
+            </div>
+          </span>
+          <span class="dropdown">
+            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">가격순</button>
+            <div class="dropdown-menu">
+              <%= link_to "높은순", main_index_path(type: "price", order: "desc"), class: "dropdown-item", remote: true %>
+              <%= link_to "낮은순", main_index_path(type: "price", order: "asc"), class: "dropdown-item", remote: true %>
+            </div>
+          </span>
+          <span class="dropdown">
+            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">등록일</button>
+            <div class="dropdown-menu">
+              <%= link_to "최신순", main_index_path(type: "created_at", order: "desc"), class: "dropdown-item", remote: true %>
+              <%= link_to "지난순", main_index_path(type: "created_at", order: "asc"), class: "dropdown-item", remote: true %>
+            </div>
+          </span>
+        </div>
+      </span>
+    </div>
+    <br/>
+    <div id="image-item-list">
+      <%= render partial: "image_items/image_items" %>
+    </div>
+    <div id="purchase-modal">
+      <%= render partial: "main/purchase" %>
     </div>
   </div>
 </div>

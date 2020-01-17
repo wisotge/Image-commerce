@@ -36,24 +36,24 @@
   <div class="container">
     <div class="row form-group">
       <div class="col-md-6">
-        <%= form_for @review, :url => reviews_path, method: :post do |f| %>
+        <%= form_for Review.new, method: :post do |f| %>
         <div>
           <%= f.label :리뷰작성 %><br/>
-          <%= f.text_field :title, class: :"form-control", cols: :"10", rows: :"10", placeholder: :"title" %>
+          <%= f.text_field :title, class: "form-control", placeholder: "title" %>
         </div>
         <br/>
         <div>
-          <%= f.number_field :rate, class: :"form-control", cols: :"30", rows: :"10", placeholder: :"rate" %>
+          <%= f.number_field :rate, class: "form-control", placeholder: "rate" %>
         </div>
         <br/>
-        <%= f.hidden_field :reviewable_type, class: "form-control", :value => 'ImageItem' %>
+        <%= f.hidden_field :reviewable_type, class: "form-control", value: 'ImageItem' %>
         <%= f.hidden_field :user_id, class: "form-control", value: current_user.id %>
         <%= f.hidden_field :reviewable_id, class: "form-control", value: @image_item.id %>
         <%= tinymce :language => "en" %>
-        <%= f.text_area :body, class: :"form-control tinymce", cols: :"15", rows: :"10", placeholder: :"body" %>
+        <%= f.text_area :body, class: "form-control tinymce", rows: "10", placeholder: "body" %>
         <br/>
         <div class="actions">
-          <%= f.submit "등록", :class => 'btn btn-primary btn-block' %>
+          <%= f.submit "등록", class: 'btn btn-primary btn-block' %>
         </div>
       <% end %>
       <br/>

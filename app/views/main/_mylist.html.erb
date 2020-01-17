@@ -4,37 +4,38 @@
   paydownload_item: [],
   } %>
 
-  <table class="table text-center">
-    <th class="thbgcolor" width="15%">Image</th>
-    <th class="thbgcolor" width="15%">Title</th>
-    <th class="thbgcolor" width="15%">Price</th>
-    <th class="thbgcolor" width="15%">CreatedAt</th>
-    <% if @info_type == "upload" %>
-      <th class="thbgcolor" width="15%">Delete</th>
-    <% else %>
-      <th class="thbgcolor" width="15%">Download</th>
+<table class="table text-center">
+  <th class="thbgcolor" width="15%">Image</th>
+  <th class="thbgcolor" width="15%">Title</th>
+  <th class="thbgcolor" width="15%">Price</th>
+  <th class="thbgcolor" width="15%">CreatedAt</th>
+  <% if @info_type == "upload" %>
+    <th class="thbgcolor" width="15%">Delete</th>
+  <% else %>
+    <th class="thbgcolor" width="15%">Download</th>
+  <% end %>
+  <!-- data per Category -->
+  <% if @info_type == "upload" %>
+    <!-- 내가 업로드한 상품 -->
+    <% @image_items.each do |upload_item| %>
+      <tr>
+        <td><%= image_tag upload_item.repimg.url ,style: 'width: 100px; height: 100px;' unless upload_item.repimg.url.nil? %></td>
+        <td><%= upload_item.title %></td>
+        <td><%= upload_item.price %></td>
+        <td><%= upload_item.created_at %></td>
+        <td><%= link_to "삭제", image_item_path(upload_item.id), method: :delete, class: "btn btn-sm btn-primary"%></td>
+      </tr>
     <% end %>
-    <!-- data per Category -->
-    <% if @info_type == "upload" %>
-      <!-- 내가 업로드한 상품 -->
-      <% @image_items.each do |upload_item| %>
-        <tr>
-          <td><%= image_tag upload_item.repimg.url ,style: 'width: 100px; height: 100px;' unless upload_item.repimg.url.nil? %></td>
-          <td><%= upload_item.title %></td>
-          <td><%= upload_item.price %></td>
-          <td><%= upload_item.created_at %></td>
-          <td><%= link_to "삭제", image_item_path(:id => upload_item.id), method: :delete, remote: true, :class => "btn btn-sm btn-primary"%></td>
-       </tr>
-      <% end %>
-    <% else %>
-      <% @image_items.each do |order_item| %>
-        <tr>
-          <td><%= image_tag order_item.image_item.repimg.url ,style: 'width: 100px; height: 100px;'%></td>
-          <td><%= order_item.image_item.title %></td>
-          <td><%= order_item.image_item.price %></td>
-          <td><%= order_item.image_item.created_at %></td>
-          <td><%= link_to "다운로드", order_item.image_item.repimg.url, download: "ImageItem_#{order_item.image_item.id}_repimg", class: "btn btn-primary btn-sm" %></td>
-       </tr>
-      <% end %>
+  <% else %>
+    <% @image_items.each do |order_item| %>
+      <tr>
+        <td><%= image_tag order_item.image_item.repimg.url, style: 'width: 100px; height: 100px;'%></td>
+        <td><%= order_item.image_item.title %></td>
+        <td><%= order_item.image_item.price %></td>
+        <td><%= order_item.image_item.created_at %></td>
+        <td><%= link_to "다운로드", order_item.image_item.repimg.url, download: "ImageItem_#{order_item.image_item.id}_repimg", class: "btn btn-primary btn-sm" %></td>
+      </tr>
     <% end %>
-  </table>
+  <% end %>
+</table>
+

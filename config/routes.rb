@@ -18,7 +18,7 @@
     end
   end
 
-  resources :reviews
+  resources :reviews, only: [:create, :destroy]
   resources :orders
   resources :user_items, only: [:create, :destroy]
 end

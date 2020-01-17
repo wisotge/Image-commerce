@@ -1,4 +1,4 @@
-<% @rep_review.each do |review| %>
+<% @reviews.each do |review| %>
 <div style="padding-bottom: 10px;">
   <div style="border: 1px solid grey">
     <div class="comment-header" style="margin: 10px 10px 10px 10px;">
@@ -10,6 +10,6 @@
 <% end %>
 <div>
   <ul class="pagination">
-    <%= paginate @rep_review %>
+    <%= paginate @reviews %>
   </ul>
 </div>
