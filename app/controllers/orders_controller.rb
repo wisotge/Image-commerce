@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
       flash[:error] = "구매할 수 없는 상품입니다."
     else 
       current_user.orders.create_with(total: params[:chocomush].to_i).find_or_create_by(image_item: image_item) do |order|
-        order.user.chocomush -= params[:chocomush].to_i
+        order.user.set_chocomush("purchase", params[:chocomush].to_i)
         if order.user.save
           flash[:success] = "상품을 구매하였습니다."
         end 

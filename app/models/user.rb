@@ -23,9 +23,8 @@ class User < ApplicationRecord
     user
   end
 
-  def use_credit
-  end
-
-  def add_credit
+  def set_chocomush(user_activity, amount)
+    #유저가 구매 또는 충전 시 보유 금액 변동 적용
+    (" #{user_activity} == charge") ? self.update(chocomush: self.chocomush += amount) : self.update(chocomush: self.chocomush -= amount)
   end
 end

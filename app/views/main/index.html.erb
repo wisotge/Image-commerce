@@ -4,6 +4,14 @@
       <span class="text-right" style="font-size:18px text-align:right;">
         <div class="dropdown-menus">
           <span class="dropdown">
+            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">카테고리별</button>
+              <div class="dropdown-menu">
+                <% Category.all.each do |category| %>
+                  <%= link_to category.title, main_index_path(category_id: category.id), class: "dropdown-item" %>
+                <% end %>
+              </div>
+          </span>
+          <span class="dropdown">
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">타입별</button>
             <div class="dropdown-menu">
               <%= link_to "유료", main_index_path(type: "price >", order: "0"), class: "dropdown-item", remote: true %>

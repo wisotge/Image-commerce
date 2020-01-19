@@ -5,9 +5,6 @@ Rails.application.routes.draw do
   
   root 'main#index'
   get 'main/index', to: "main#index"
-  get 'main/charge'
-  get 'main/paymodule'
-  put 'main/chocomush', to: "main#addBalance"
   get '/cart', to: "main#cart"
 
   resources :image_items do
@@ -25,4 +22,5 @@ Rails.application.routes.draw do
   resources :reviews, only: [:create, :destroy]
   resources :orders
   resources :user_items, only: [:create, :destroy]
+  resources :line_items
 end

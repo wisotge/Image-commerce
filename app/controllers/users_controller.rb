@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.update(chocomush: current_user.chocomush += params.dig(:user, :chocomush).to_i)
+    current_user.set_chocomush("charge", params.dig(:user, :chocomush).to_i)
     redirect_to root_path, notice: "충전이 완료되었습니다."
   end
   
