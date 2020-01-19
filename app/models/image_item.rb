@@ -6,7 +6,6 @@ class ImageItem < ApplicationRecord
   has_one :order
   has_many :reviews, as: :reviewable
 
-  default_scope {order(created_at: :desc)}
   scope :free_images, -> {where(price: 0)}
   scope :pay_images, -> {where("price > 0")}
   scope :sort_images, -> (sort, align) {

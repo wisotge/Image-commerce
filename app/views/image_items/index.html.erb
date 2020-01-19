@@ -7,29 +7,29 @@
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">카테고리별</button>
               <div class="dropdown-menu">
                 <% Category.all.each do |category| %>
-                  <%= link_to category.title, main_index_path(category_id: category.id), class: "dropdown-item" %>
+                  <%= link_to category.title, image_items_path(category_id: category.id), class: "dropdown-item", remote: true %>
                 <% end %>
               </div>
           </span>
           <span class="dropdown">
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">타입별</button>
             <div class="dropdown-menu">
-              <%= link_to "유료", main_index_path(type: "price >", order: "0"), class: "dropdown-item", remote: true %>
-              <%= link_to "무료", main_index_path(type: "price is", order: "0"), class: "dropdown-item", remote: true %>
+              <%= link_to "유료", image_items_path(type: "price >", order: "0"), class: "dropdown-item", remote: true %>
+              <%= link_to "무료", image_items_path(type: "price is", order: "0"), class: "dropdown-item", remote: true %>
             </div>
           </span>
           <span class="dropdown">
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">가격순</button>
             <div class="dropdown-menu">
-              <%= link_to "높은순", main_index_path(type: "price", order: "desc"), class: "dropdown-item", remote: true %>
-              <%= link_to "낮은순", main_index_path(type: "price", order: "asc"), class: "dropdown-item", remote: true %>
+              <%= link_to "높은순", image_items_path(type: "price", order: "desc"), class: "dropdown-item", remote: true %>
+              <%= link_to "낮은순", image_items_path(type: "price", order: "asc"), class: "dropdown-item", remote: true %>
             </div>
           </span>
           <span class="dropdown">
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">등록일</button>
             <div class="dropdown-menu">
-              <%= link_to "최신순", main_index_path(type: "created_at", order: "desc"), class: "dropdown-item", remote: true %>
-              <%= link_to "지난순", main_index_path(type: "created_at", order: "asc"), class: "dropdown-item", remote: true %>
+              <%= link_to "최신순", image_items_path(type: "created_at", order: "desc"), class: "dropdown-item", remote: true %>
+              <%= link_to "지난순", image_items_path(type: "created_at", order: "asc"), class: "dropdown-item", remote: true %>
             </div>
           </span>
         </div>
@@ -40,7 +40,7 @@
       <%= render partial: "image_items/image_items" %>
     </div>
     <div id="purchase-modal">
-      <%= render partial: "main/purchase" %>
+      <%= render partial: "image_items/purchase" %>
     </div>
   </div>
 </div>

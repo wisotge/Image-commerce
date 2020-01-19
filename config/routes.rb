@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
-  root 'main#index'
-  get 'main/index', to: "main#index"
-  get '/cart', to: "main#cart"
+  root 'image_items#index'
 
   resources :image_items do
     member do

@@ -21,6 +21,7 @@
           </h5>
           <hr/>
           <div style="text-align:center;">
+            <% if current_user %>
               <a href="#" class="btn btn-primary" id="purchase_button" data-itemid="<%= item.id %>" data-itemtitle="<%= item.title %>" data-itemprice="<%= item.price %>">구매하기</a>
               <%= link_to "상세정보",  image_item_path(item.id), method: :get, class: "btn btn-primary", id: "showItem" %>
               <% if user_signed_in? && UserItem.find_by(user_id: current_user.id, image_item_id: item.id).present? %>
@@ -28,6 +29,7 @@
               <% else %>
                 <%= link_to "찜하기", user_items_path(image_item_id: item.id), method: "POST", class: "btn btn-primary"  %>
               <% end %>
+            <% end %>
           </div>
         </div>
       </div>
