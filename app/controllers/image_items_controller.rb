@@ -1,5 +1,6 @@
 class ImageItemsController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_image_item, only: %i(show destroy)
 
   def create
     if ImageItem.create image_item_params
@@ -15,7 +16,6 @@ class ImageItemsController < ApplicationController
   end
 
   def show
-    @image_item = ImageItem.find_by(id: params[:id]) 
     @reviews = Review.where(reviewable_id: @image_item.id).page(params[:page]).per(3)
   end
 
@@ -23,10 +23,15 @@ class ImageItemsController < ApplicationController
     if Order.find_by(image_item_id: params[:id])
       flash[:error] = "삭제할 수 없는 이미지입니다."
     else
-      ImageItem.find_by(id: params[:id]).destroy
+      @image_item.destroy
       flash[:success] = "성공적으로 이미지를 삭제하였습니다."
     end
     redirect_to main_mypage_path
+  end
+
+  private
+  def load_image_item
+    @image_item = ImageItem.find_by(id: params[:id])
   end
 
   private

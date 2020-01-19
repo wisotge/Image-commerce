@@ -43,14 +43,14 @@
       <div class="col">
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <%= link_to "구매 이미지", main_mypage_path(type: "freedownload"), class: "nav-link", data_toggle: "tab" %>
+            <%= link_to "구매 이미지", mypage_user_path(type: "freedownload"), class: "nav-link", data_toggle: "tab" %>
           </li>
           <li class="nav-item">
-            <%= link_to "업로드한 이미지", main_mypage_path(type: "upload"), class: "nav-link", data_toggle: "tab" %>
+            <%= link_to "업로드한 이미지", mypage_user_path(type: "upload"), class: "nav-link", data_toggle: "tab" %>
           </li>
         </ul>
         <div class="tab-content" id="mylist">
-          <%= render partial: "main/mylist" %>
+          <%= render partial: "users/mylist" %>
         </div>
         <br/>
             <div class="pagination">

@@ -5,14 +5,14 @@
   } %>
 
 <table class="table text-center">
-  <th class="thbgcolor" width="15%">Image</th>
-  <th class="thbgcolor" width="15%">Title</th>
-  <th class="thbgcolor" width="15%">Price</th>
-  <th class="thbgcolor" width="15%">CreatedAt</th>
+  <th class="thbgcolor">Image</th>
+  <th class="thbgcolor">Title</th>
+  <th class="thbgcolor">Price</th>
+  <th class="thbgcolor">CreatedAt</th>
   <% if @info_type == "upload" %>
-    <th class="thbgcolor" width="15%">Delete</th>
+    <th class="thbgcolor">Delete</th>
   <% else %>
-    <th class="thbgcolor" width="15%">Download</th>
+    <th class="thbgcolor">Download</th>
   <% end %>
   <!-- data per Category -->
   <% if @info_type == "upload" %>
@@ -39,3 +39,8 @@
   <% end %>
 </table>
 
+<style>
+  th.thbgcolor{
+    width: 15%;
+  }
+</style>

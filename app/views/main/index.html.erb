@@ -6,8 +6,8 @@
           <span class="dropdown">
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">타입별</button>
             <div class="dropdown-menu">
-              <%= link_to "유료", main_index_path(type: "pay"), class: "dropdown-item", remote: true %>
-              <%= link_to "무료", main_index_path(type: "free"), class: "dropdown-item", remote: true %>
+              <%= link_to "유료", main_index_path(type: "price >", order: "0"), class: "dropdown-item", remote: true %>
+              <%= link_to "무료", main_index_path(type: "price is", order: "0"), class: "dropdown-item", remote: true %>
             </div>
           </span>
           <span class="dropdown">
