@@ -6,10 +6,12 @@ class UsersController < ApplicationController
     @image_items = @image_items.page(params[:page]).per(5)
   end
   
-  def add_balance
-    current_user.chocomush += params.dig(:user, :chocomush).to_i
-    current_user.save
-    redirect_to main_paymodule_path
+  def edit 
+  end
+
+  def update
+    current_user.update(chocomush: current_user.chocomush += params.dig(:user, :chocomush).to_i)
+    redirect_to root_path, notice: "충전이 완료되었습니다."
   end
   
 end

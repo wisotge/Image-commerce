@@ -1,5 +1,5 @@
 <div class="charge-container">
-  <%= form_for current_user, url: main_chocomush_path, method: :put, remote: true do |f| %>
+  <%= form_for current_user, url: user_path, method: :put do |f| %>
     <div class="">
       현재 잔액 : <%= current_user.chocomush %>
     </div>
@@ -17,10 +17,6 @@
 <script type="text/javascript">
   $("document").ready(function(){
     $('#charge_mount').val('')
-  })
-  $('#charge-btn').on('click',function () {
-    let url = '/main/paymodlue';
-    $(location).attr('href',url);
   })
 </script>
 <style>

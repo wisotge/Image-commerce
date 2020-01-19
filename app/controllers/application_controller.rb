@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def get_cart
+    current_user.orders.cart.first_or_create
+  end
+
   def pretty_time(time)
     result = time.strftime("%y-%m%d") rescue "-"
   end
