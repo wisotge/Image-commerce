@@ -1,6 +1,6 @@
 class MainController < ApplicationController
-  before_action :authenticate_user!, except: %i(index)
-
+  before_action :authenticate_user! #, except: %i(index)
+  
   def index
     sort_type = params[:type]
     if sort_type
@@ -10,7 +10,7 @@ class MainController < ApplicationController
     end 
     @image_items = @image_items.page(params[:page]).per(9)
   end 
-
+  
   def temp
     sort_type = params[:type]
     if ["pay", "free"].include?(sort_type)

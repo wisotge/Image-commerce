@@ -40,13 +40,13 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <script type="text/javascript">
-
+  
   $(".image_item_data").on("click", "#purchase_button", function(){
-     $("#purchase_modal").show();
-     $("#purchase-image").val($(this).data("itemtitle"));
-     $("#purchase-imageid").val($(this).data("itemid"));
-     $("#holding-amount").val("<%= current_user.chocomush %>")
-     $("#purchase-amount").val($(this).data("itemprice"));
+    $("#purchase_modal").show();
+    $("#purchase-image").val($(this).data("itemtitle"));
+    $("#purchase-imageid").val($(this).data("itemid"));
+    $("#holding-amount").val("<%= current_user.chocomush %>")
+    $("#purchase-amount").val($(this).data("itemprice"));
   })
 
   $("#close_button").on("click", function(){

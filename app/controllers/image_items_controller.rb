@@ -26,7 +26,7 @@ class ImageItemsController < ApplicationController
       @image_item.destroy
       flash[:success] = "성공적으로 이미지를 삭제하였습니다."
     end
-    redirect_to main_mypage_path
+    redirect_to mypage_user_path
   end
 
   private

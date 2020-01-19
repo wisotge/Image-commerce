@@ -19,7 +19,7 @@
     <!-- 내가 업로드한 상품 -->
     <% @image_items.each do |upload_item| %>
       <tr>
-        <td><%= image_tag upload_item.repimg.url ,style: 'width: 100px; height: 100px;' unless upload_item.repimg.url.nil? %></td>
+        <td><%= image_tag upload_item.repimg.thumb.url ,style: 'width: 100px; height: 100px;' unless upload_item.repimg.url.nil? %></td>
         <td><%= upload_item.title %></td>
         <td><%= upload_item.price %></td>
         <td><%= upload_item.created_at %></td>
@@ -29,7 +29,7 @@
   <% else %>
     <% @image_items.each do |order_item| %>
       <tr>
-        <td><%= image_tag order_item.image_item.repimg.url, style: 'width: 100px; height: 100px;'%></td>
+        <td><%= image_tag order_item.image_item.repimg.thumb.url, style: 'width: 100px; height: 100px;'%></td>
         <td><%= order_item.image_item.title %></td>
         <td><%= order_item.image_item.price %></td>
         <td><%= order_item.image_item.created_at %></td>

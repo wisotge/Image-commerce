@@ -5,7 +5,7 @@
         <div class="thumbnail" style="margin-top:10px">
           <h1 class="a" style="text-align:center;">
             <% if item.repimg %>
-              <%= image_tag item.repimg.url ,style: 'width: 320px; height: 350px;' unless item.repimg.url.nil? %>
+              <%= image_tag item.repimg.url ,style: 'width: 320px; height: 350px;' unless item.repimg.thumb.url.nil? %>
             <% else %>
               <i class="fas fa-camera-retro fa-border fa-3x fa-fw" style="font-size:250px;" aria-hidden="true"></i>
             <% end %>
