@@ -4,8 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
-  has_many :image_items, dependent: :nullify
+  has_many :image_items, dependent: :nullify #상품의 경우 유저가 삭제되더라도 사라지면 안됨
+  has_many :user_items, dependent: :destroy #찜하기는 해당 유저 삭제시 사라져도 됨
+  has_many :wishlist, through: :user_items, source: :image_item 
   has_many :orders, dependent: :nullify
+
+  #has_many :paid_items, -> { where(status: paid) }, through: :orders, source: :line_item
+
+
   PARAMETERS = [:name]
   
   def self.find_for_oauth(auth, current_user)

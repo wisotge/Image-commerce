@@ -3,8 +3,9 @@ class ImageItem < ApplicationRecord
 
   belongs_to :user, optional:true
   belongs_to :category, optional:true
-  has_one :order
+  #has_one :order
   has_many :reviews, as: :reviewable
+  has_many :line_items, dependent: :nullify
 
   scope :free_images, -> {where(price: 0)}
   scope :pay_images, -> {where("price > 0")}
