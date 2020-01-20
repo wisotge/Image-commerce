@@ -70,7 +70,7 @@
     purchaseAmount = parseInt(purchaseAmount);
     if(holdingAmount < purchaseAmount){
       alert("보유금액이 부족합니다.");
-      var url = "/charge"
+      var url = "/users/<%= current_user.id %>/edit"
       $(location).attr('href', url);
     }else{
       $.ajax({

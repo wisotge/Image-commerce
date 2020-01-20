@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
   
-  def mypage
-    @info_type = params[:type]
-    @image_items = (@info_type == "upload") ? ImageItem.where(user_id: current_user.id) : current_user.orders.order("created_at DESC")
+  def show
+    case @info_type = params[:type]
+    when "upload" then @image_items = current_user.image_items
+    when "cart" then @image_items = get_cart.image_items
+    when "paid" then @image_items = current_user.image_items.joins(line_items: :order).where(orders: {status: 1})
+    else @image_items = current_user.wishlist 
+    end
     @image_items = @image_items.page(params[:page]).per(5)
   end
   

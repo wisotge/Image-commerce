@@ -2,16 +2,13 @@ class ApplicationController < ActionController::Base
   helper_method :cart
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def cart
+  def get_cart
+     #로그인한 유저의 카트를 가져오고, 없으면 생성
     if current_user
-      current_user.orders.find_or_create_by(status: :cart)
+      current_user.orders.cart.first_or_create
     else
       nil
     end
-  end
-
-  def get_cart
-    current_user.orders.cart.first_or_create
   end
 
   def pretty_time(time)

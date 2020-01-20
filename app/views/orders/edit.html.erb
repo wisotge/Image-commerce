@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="card col-md-6 offset-md-3 p-5" style="border:2px solid warning;">
+      <div class="panel-body">
+        <div class="mar-ver pad-btm">
+          <h1 class="h3">결제 페이지</h1>
+          <hr>
+        </div>
+        <%= form_for(@order, method: :put) do |f| %>
+        <div class="form-group">
+          <%= f.label :결제금액 %><br/>
+          <%= f.text_field :total, class: "form-control", placeholder: "total" %>
+        </div>
+        <div class="actions">
+          <%= f.submit "구입하기", :class => 'btn btn-primary btn-block' %>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>

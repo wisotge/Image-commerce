@@ -1,6 +1,16 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_order, only: %(show edit update delete)
+  before_action :load_order, only: %i(show edit update destroy)
+  #before_action :check_owner, only: %(new)
+
+  def index 
+    @orders = current_user.orders.paid.order(:paid_at).page(params[:page]).per(5)
+  end 
+
+  def new 
+    #장바구니 페이지, 상품 구매시 create로 order 생성 
+    @order = get_cart
+  end
 
   def create
     image_item = ImageItem.find_by(id: params[:id])
@@ -17,9 +27,21 @@ class OrdersController < ApplicationController
     end 
   end
 
+  def edit
+  end
+  
+  def update
+    @order.paid!
+    @order.update(paid_at: Time.now)
+    redirect_to users_path
+  end
+
   private
   def load_order
     @order = Order.find_by(id: params[:id])
   end
 
+  def check_owner
+    redirect_to root_path, notice: "권한없음 " unless @order.user == current_user
+  end
 end

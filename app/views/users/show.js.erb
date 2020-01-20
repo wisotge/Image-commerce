@@ -1,0 +1,6 @@
+$(function(){
+  $("#mylist").empty();  
+  var html = "<%= escape_javascript(render 'users/mylist') %>";
+  $("#mylist").html(html);
+  console.log("succesfully render!");
+})

@@ -1,46 +1,37 @@
-<% columns = {
-  upload_item: ["price", "createdAt", "delete"],
-  freedownload_item: [],
-  paydownload_item: [],
-  } %>
-
-<table class="table text-center">
-  <th class="thbgcolor">Image</th>
-  <th class="thbgcolor">Title</th>
-  <th class="thbgcolor">Price</th>
-  <th class="thbgcolor">CreatedAt</th>
-  <% if @info_type == "upload" %>
-    <th class="thbgcolor">Delete</th>
-  <% else %>
-    <th class="thbgcolor">Download</th>
-  <% end %>
-  <!-- data per Category -->
-  <% if @info_type == "upload" %>
-    <!-- 내가 업로드한 상품 -->
-    <% @image_items.each do |upload_item| %>
-      <tr>
-        <td><%= image_tag upload_item.repimg.thumb.url ,style: 'width: 100px; height: 100px;' unless upload_item.repimg.url.nil? %></td>
-        <td><%= upload_item.title %></td>
-        <td><%= upload_item.price %></td>
-        <td><%= upload_item.created_at %></td>
-        <td><%= link_to "삭제", image_item_path(upload_item.id), method: :delete, class: "btn btn-sm btn-primary"%></td>
-      </tr>
-    <% end %>
-  <% else %>
-    <% @image_items.each do |order_item| %>
-      <tr>
-        <td><%= image_tag order_item.image_item.repimg.thumb.url, style: 'width: 100px; height: 100px;'%></td>
-        <td><%= order_item.image_item.title %></td>
-        <td><%= order_item.image_item.price %></td>
-        <td><%= order_item.image_item.created_at %></td>
-        <td><%= link_to "다운로드", order_item.image_item.repimg.url, download: "ImageItem_#{order_item.image_item.id}_repimg", class: "btn btn-primary btn-sm" %></td>
-      </tr>
-    <% end %>
-  <% end %>
-</table>
-
-<style>
-  th.thbgcolor{
-    width: 15%;
-  }
-</style>
+<div class="container">
+<% @image_items.each do |item| %>
+  <div class="card mb-3" style="max-width: 800PX;">
+    <div class="row no-gutters">
+      <div class="col-md-2">
+        <%= image_tag item.repimg.thumb.url, class: "card-img" unless item.repimg.url.nil? %>
+      </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <% if @info_type != "paid" %>
+            <h5 class="card-title"><%= item.title %></h5>
+          <% end %>
+          <p class="card-text"><%= item.description.html_safe %></p>
+          <% if @info_type == "upload" %>
+            <%= link_to '삭제', image_item_path(item), method: :delete, class: "btn btn-primary btn-sm" %>
+          <% elsif @info_type == "paid" %>
+            <%= link_to "다운로드", item.repimg.url, download: "ImageItem_#{item.id}_repimg", class: "btn btn-primary btn-sm" %>
+          <% elsif @info_type == "cart" %>          
+            <%= link_to '취소', "", class: "btn btn-primary btn-sm" %>
+          <% else %>
+            <%= link_to "찜 해제하기", user_item_path(item.id), method: :delete, class: "btn btn-primary btn-sm" %>
+            <%= link_to '장바구니에 담기', "", class: "btn btn-primary btn-sm" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if @info_type == "cart" %>
+  <%= link_to '구매하기', edit_order_path(current_user.orders.cart.first), class: "btn btn-primary btn-sm"%>
+<% end %>
+<div>
+  <ul class="pagination">
+    <%= paginate @image_items %>
+  </ul>
+</div>
+</div>

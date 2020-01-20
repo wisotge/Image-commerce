@@ -39,23 +39,23 @@
       </div>
     </div>
     <br/><br/>
-    <div class="boxed">
-      <div class="col">
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <%= link_to "구매 이미지", mypage_user_path(type: "freedownload"), class: "nav-link", data_toggle: "tab" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "업로드한 이미지", mypage_user_path(type: "upload"), class: "nav-link", data_toggle: "tab" %>
-          </li>
-        </ul>
+    <div class="row">
+      <div class="col-2">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="align: top;">
+          <%= link_to "구매한 상품", user_path(type: "paid"), class: "nav-link active", remote: true, data_toggle: "pill", role: "tab", aria_controls: "v-pills-profile", aria_selected: "true", remote: true %>
+          <%= link_to "업로드한 상품", user_path(type: "upload"), class: "nav-link", remote: true, data_toggle: "pill", role: "tab", aria_controls: "v-pills-profile", aria_selected: "false", remote: true %>
+          <%= link_to "장바구니", user_path(type: "cart"), class: "nav-link", remote: true, data_toggle: "pill", role: "tab", aria_controls: "v-pills-profile", aria_selected: "false", remote: true %>
+          <%= link_to "찜한 상품", user_path(type: "useritem"), class: "nav-link", remote: true, data_toggle: "pill", role: "tab", aria_controls: "v-pills-profile", aria_selected: "false", remote: true %>
+        </div>
+      </div>
+      <div class="col-10">
         <div class="tab-content" id="mylist">
           <%= render partial: "users/mylist" %>
         </div>
         <br/>
-            <div class="pagination">
-              <%= paginate @image_items %>
-            </div>
+          <div class="pagination">
+            <%= paginate @image_items %>
+          </div>
         <br/>
       </div>
     </div>

@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   resources :users do 
     member do
       put :add_balance
-      get :mypage
     end 
   end 
   resources :reviews, only: [:create, :destroy]

@@ -1,6 +1,6 @@
 class ImageItemsController < ApplicationController
   before_action :authenticate_user! #, except: [:index]
-  before_action :load_image_item, only: %i(show destroy)
+  before_action :load_image_item, only: %i(show destroy edit)
 
   def index
     #image_item에 카테고리별로 정렬하는 sort_images 정의
@@ -25,6 +25,14 @@ class ImageItemsController < ApplicationController
 
   def show
     @reviews = Review.where(reviewable_id: @image_item.id).page(params[:page]).per(3)
+  end
+
+  def edit
+    #line_item 생성   
+    @order = get_cart
+    line_item = @order.line_items.where(image_item: @image_item).first_or_create(price: @image_item.price)
+    line_item.set_order_total
+    redirect_to root_path, notice: "장바구니에 상품을 담았습니다."
   end
 
   def destroy

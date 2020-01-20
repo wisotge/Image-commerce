@@ -1,0 +1,7 @@
+<% if @order.line_items.blank? %>
+  장바구니가 비었습니다.
+<% else %>
+  <% @order.line_items.each do |line_item| %>
+    <%= line_item.image_item.title %>
+  <% end %>
+<% end %>
