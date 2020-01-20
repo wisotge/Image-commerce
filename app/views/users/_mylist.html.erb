@@ -16,7 +16,7 @@
           <% elsif @info_type == "paid" %>
             <%= link_to "다운로드", item.repimg.url, download: "ImageItem_#{item.id}_repimg", class: "btn btn-primary btn-sm" %>
           <% elsif @info_type == "cart" %>          
-            <%= link_to '취소', "", class: "btn btn-primary btn-sm" %>
+            <%= link_to '취소', toggle_set_line_item_image_item_path(item), method: :post, class: "btn btn-primary btn-sm" %>
           <% else %>
             <%= link_to "찜 해제하기", user_item_path(item.id), method: :delete, class: "btn btn-primary btn-sm" %>
             <%= link_to '장바구니에 담기', "", class: "btn btn-primary btn-sm" %>

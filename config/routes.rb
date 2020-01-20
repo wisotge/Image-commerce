@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :image_items do
     member do
       put :add_video
+      post :toggle_set_line_item
     end
   end
 

@@ -23,7 +23,7 @@
           <div style="text-align:center;">
             <% if current_user %>
               <%= link_to "상세정보", image_item_path(item), class: "btn btn-primary" %>
-              <%= link_to "장바구니",  edit_image_item_path(item), class: "btn btn-primary", id: "showItem" %>
+              <%= link_to "장바구니",  toggle_set_line_item_image_item_path(item), method: :post, class: "btn btn-primary", id: "showItem" %>
               <% if user_signed_in? && UserItem.find_by(user_id: current_user.id, image_item_id: item.id).present? %>
                 <%= link_to "찜해제", user_item_path(item.id), method: :delete, class: "btn btn-primary" %>
               <% else %>

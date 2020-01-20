@@ -1,6 +1,6 @@
 class ImageItemsController < ApplicationController
   before_action :authenticate_user! #, except: [:index]
-  before_action :load_image_item, only: %i(show destroy edit)
+  before_action :load_image_item, only: %i(show destroy edit toggle_set_line_item)
 
   def index
     #image_item에 카테고리별로 정렬하는 sort_images 정의
@@ -28,11 +28,7 @@ class ImageItemsController < ApplicationController
   end
 
   def edit
-    #line_item 생성   
-    @order = get_cart
-    line_item = @order.line_items.where(image_item: @image_item).first_or_create(price: @image_item.price)
-    line_item.set_order_total
-    redirect_to root_path, notice: "장바구니에 상품을 담았습니다."
+    #업로드한 아이템 수정  
   end
 
   def destroy
@@ -45,6 +41,12 @@ class ImageItemsController < ApplicationController
     redirect_to mypage_user_path
   end
 
+  def toggle_set_line_item
+    #line item 생성/삭제, 이미지는 수량이 필요 없으므로 이미 장바구니에 있는 상품일 경우 삭제, 없는 상품일 경우는 생성
+    line_item = (get_cart.image_items.include?(@image_item)) ? get_cart.line_items.find_by(image_item: @image_item).destroy : get_cart.line_items.create(price: @image_item.price, image_item: @image_item)
+    line_item.set_order_total
+  end
+
   private
   def load_image_item
     @image_item = ImageItem.find_by(id: params[:id])
@@ -55,4 +57,7 @@ class ImageItemsController < ApplicationController
     params.require(:image_item).permit(:title, :imgtype, :price, :repimg, :user_id, :description)
   end
 
+  def line_item_params
+    params.require(:line_item).permit(:price, :order_id, :image_item_id)
+  end
 end
