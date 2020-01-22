@@ -1,5 +1,6 @@
 
-<% @image_items.each do |item| %>
+<% if !@image_items.empty? %>
+  <% @image_items.each do |item| %>
     <div class="card mb-3" style="height:70%;">
       <div class="row no-gutters">
         <div class="col-md-2">
@@ -24,9 +25,25 @@
       </div>
     </div>
   <% end %>
-<% if @info_type == "cart" %>
-  <%= link_to 'monetization_on', edit_order_path(current_user.orders.cart.first), class: "btn btn-outline-secondary btn-sm material-icons justify-content-right"%>
+  <% if @info_type == "cart" %>
+    <div class="card">
+      <div class="card-body">
+        <%= get_cart.order_summary %> = <%= money(get_cart.total) %><hr/>
+         <%= link_to '결제하기', edit_order_path(current_user.orders.cart.first), class: 'btn btn-primary btn-block' %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-6 offset-md-3 p-5 mt-2">
+        <i class="material-icons">info</i><br/>
+        상품이 존재하지 않습니다.
+      </div>
+    </div>
+  </div>
 <% end %>
+
 <div>
   <ul class="pagination justify-content-center">
     <%= paginate @image_items %>

@@ -31,6 +31,8 @@ class User < ApplicationRecord
 
   def set_chocomush(user_activity, amount)
     #유저가 구매 또는 충전 시 보유 금액 변동 적용
+#   분기, 헷갈리지 않게끔 코드 구성 >> charge, pay
+#   각 function마다 추가적으로 작성되는 코드가 다를 수 있음 
     (user_activity == "charge") ? self.update(chocomush: self.chocomush += amount) : self.update(chocomush: self.chocomush -= amount)
   end
 

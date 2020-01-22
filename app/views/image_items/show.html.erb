@@ -6,10 +6,27 @@
           <table border="1" width="1100" height="150">
             <tr>
               <td width="20%" rowspan="3">
-                <%= image_tag @image_item.repimg.url ,style: 'width: 320px; height: 300px;' unless @image_item.repimg.url.nil? %>
+                <%= image_tag @image_item.repimg_url(:thumb) ,style: 'width: 320px; height: 300px;' unless @image_item.repimg.url.nil? %>
               </td>
               <td class="hidden-bottom tableContent">
-                <strong>제품명: </strong><%= @image_item.title %>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb" style="background-color:white;">
+                    <div class="row">
+                      <li class="breadcrumb-item"><%= @image_item.category.title %></li>
+                      <li class="breadcrumb-item active" aria-current="page"><strong><%= @image_item.title %></strong></li>
+                      <li class="ml-2">
+                        <% if current_user %>
+                          <% if current_user.has_item?(@image_item, "paid_item") %>
+                            <%= link_to "get_app", @image_item.repimg.url, download: "ImageItem_#{@image_item.id}_repimg", class: "btn btn-sm btn-outline-secondary material-icons" %>
+                          <% else %>
+                            <%= link_to current_user.has_item?(@image_item, "cart_item") ? "shopping_cart" : "add_shopping_cart",  toggle_set_line_item_image_item_path(@image_item), method: :post, class: "btn btn-sm btn-outline-secondary material-icons" %>
+                          <% end %>
+                          <%= link_to current_user.has_item?(@image_item, "user_item") ? "favorite" : "favorite_border", toggle_set_user_item_image_item_path(@image_item), method: :post, class: "btn  btn-sm btn-outline-secondary material-icons" %>
+                        <% end %>
+                      </li>
+                    </div>
+                  </ol>
+                </nav>
               </td>
             </tr>
             <tr>

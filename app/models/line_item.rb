@@ -6,6 +6,7 @@ class LineItem < ApplicationRecord
   #after_save :set_order_total
 
   def set_order_total
+    # 결제할때만 update 하면 되므로 필요 없음 
     order.update(total: order.line_items.sum("price"))
   end
 end

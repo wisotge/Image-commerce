@@ -54,7 +54,7 @@ class ImageItemsController < ApplicationController
 
   private
   def image_item_params
-    params.require(:image_item).permit(:title, :imgtype, :price, :repimg, :user_id, :description)
+    params.require(:image_item).permit(:title, :imgtype, :price, :repimg, :user_id, :description, :category_id)
   end
 
   def check_owner

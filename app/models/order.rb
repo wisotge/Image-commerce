@@ -8,4 +8,9 @@ class Order < ApplicationRecord
 
   scope :paid_orders, -> {where(status: :paid)}
   # enum status: [:cart, :paid]
+
+  def order_summary
+    result =  "#{self.image_items.first.title} 항목 외 #{self.image_items.count - 1}건"
+    "#{result}"
+  end
 end

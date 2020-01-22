@@ -1,11 +1,15 @@
+<style>
+  .image_item_data img{
+    width: 100%;
+  }
+</style>
+
 <div class="row">
   <% @image_items.each do |item| %>
-    <div class="col-md-4 image_item_data" style="padding-top: 20px;">
+    <div class="col-md-4 image_item_data mb-5">
       <div class="card">
-        <div class="thumbnail" style="margin-top:10px">
-          <h1 class="a" style="text-align:center;">
-            <%= image_tag item.repimg.url ,style: 'width: 320px; height: 350px;' unless item.repimg.thumb.url.nil? %>
-          </h1>
+        <div class="thumbnail">
+          <%= image_tag item.repimg_url(:thumb) unless item.repimg.thumb.url.nil? %>
         </div>
         <div class="card-body">
           <h5 class="card-title" style="text-align:center;">

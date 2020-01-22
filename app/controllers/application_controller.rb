@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :money
+  helper_method :get_cart, :money
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def get_cart

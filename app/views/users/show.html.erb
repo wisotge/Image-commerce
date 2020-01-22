@@ -12,7 +12,7 @@
                 <td class="hidden-bottom">
                   <strong><%= current_user.email %> (<%= current_user.name %>님)</strong>
                   &nbsp;
-                  <%= link_to "회원정보 수정", edit_user_registration_path, class: "btn btn-primary btn-sm" %>
+                  <%= link_to "회원정보 수정", edit_user_registration_path, class: "btn btn-outline-secondary btn-sm" %>
                 </td>
                 <td class="hidden-bottom">
                   <strong>업로드한 이미지</strong>
@@ -36,15 +36,12 @@
     </div>
     <br/><br/>
     <div>
-      <div class="dropdown" style="text-align:right;">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a><br/><br/>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <%= link_to "구매한 상품", user_path(type: "paid"), class: "nav-link active", remote: true, data_toggle: "pill", role: "tab", aria_controls: "v-pills-profile", aria_selected: "true", remote: true %>
-          <%= link_to "업로드한 상품", user_path(type: "upload"), class: "nav-link", remote: true, data_toggle: "pill", role: "tab", aria_controls: "v-pills-profile", aria_selected: "false", remote: true %>
-          <%= link_to "장바구니", user_path(type: "cart"), class: "nav-link", remote: true, data_toggle: "pill", role: "tab", aria_controls: "v-pills-profile", aria_selected: "false", remote: true %>
-          <%= link_to "찜한 상품", user_path(type: "useritem"), class: "nav-link", remote: true, data_toggle: "pill", role: "tab", aria_controls: "v-pills-profile", aria_selected: "false", remote: true %>
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2 mb-2" role="group" aria-label="First group">
+          <%= link_to "구매한 상품", user_path(type: "paid"), class: "btn btn-outline-secondary", remote: true %>
+          <%= link_to "업로드한 상품", user_path(type: "upload"), class: "btn btn-outline-secondary", remote: true %>
+          <%= link_to "장바구니", user_path(type: "cart"), class: "btn btn-outline-secondary", remote: true %>
+          <%= link_to "찜한 상품", user_path(type: "useritem"), class: "btn btn-outline-secondary", remote: true %>
         </div>
       </div>
       <div class="tab-content" id="mylist">
@@ -88,4 +85,5 @@
         $('#myTab a[href="' + activeTab + '"]').tab('show');
     }
   });
+});
 </script>

@@ -8,9 +8,13 @@
           <%= f.text_field :title, class: "form-control", placeholder: "title" %>
         </div><br/>
         <div class="row">
-          <div class="col">
+          <div class="col-md-6">
             <%= f.label :ImagePrice %><br/>
             <%= f.text_field :price, class: "form-control", placeholder: "price" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :Category %><br/>
+              <%= f.select(:category_id, [['건축물', 1], ['풍경', 2], ['로고', 3], ['자동차', 4]], {}, {class: "form-control"}) %>
           </div>
         </div>
         <br/>
