@@ -31,6 +31,15 @@ class User < ApplicationRecord
 
   def set_chocomush(user_activity, amount)
     #유저가 구매 또는 충전 시 보유 금액 변동 적용
-    (" #{user_activity} == charge") ? self.update(chocomush: self.chocomush += amount) : self.update(chocomush: self.chocomush -= amount)
+    (user_activity == "charge") ? self.update(chocomush: self.chocomush += amount) : self.update(chocomush: self.chocomush -= amount)
   end
+
+  def has_item?(item, type)
+    case 
+    when type == "user_item" then user_items.where(image_item: item).present? #찜한 상품인가?
+    when type == "cart_item" then orders.cart.first_or_create.image_items.where(id: item).present? #카트에 담은 상품인가?
+    else ImageItem.joins(line_items: :order).where(orders: {status: 1, user_id: self.id}).find_by(id: item).present? #구매한 상품인가?
+    end
+  end
+
 end

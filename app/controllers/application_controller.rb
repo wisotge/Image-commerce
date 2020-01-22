@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :cart
+  helper_method :money
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def get_cart
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def money(number)
-    result =  ActiveSupport::NumberHelper.number_to_delimited(100000) rescue "-"
+    result =  ActiveSupport::NumberHelper.number_to_delimited(number) rescue "-"
     "#{result}원"
   end
 

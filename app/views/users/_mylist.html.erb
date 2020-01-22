@@ -1,37 +1,34 @@
-<div class="container">
+
 <% @image_items.each do |item| %>
-  <div class="card mb-3" style="max-width: 800PX;">
-    <div class="row no-gutters">
-      <div class="col-md-2">
-        <%= image_tag item.repimg.thumb.url, class: "card-img" unless item.repimg.url.nil? %>
-      </div>
-      <div class="col-md-10">
-        <div class="card-body">
-          <% if @info_type != "paid" %>
+    <div class="card mb-3" style="height:70%;">
+      <div class="row no-gutters">
+        <div class="col-md-2">
+          <%= image_tag item.repimg.thumb.url.to_s, class: "card-img align-self-center mr-3", style: "width:70%;" %>
+        </div>
+        <div class="col-md-10">
+          <div class="card-body">
             <h5 class="card-title"><%= item.title %></h5>
-          <% end %>
-          <p class="card-text"><%= item.description.html_safe %></p>
-          <% if @info_type == "upload" %>
-            <%= link_to '삭제', image_item_path(item), method: :delete, class: "btn btn-primary btn-sm" %>
-          <% elsif @info_type == "paid" %>
-            <%= link_to "다운로드", item.repimg.url, download: "ImageItem_#{item.id}_repimg", class: "btn btn-primary btn-sm" %>
-          <% elsif @info_type == "cart" %>          
-            <%= link_to '취소', toggle_set_line_item_image_item_path(item), method: :post, class: "btn btn-primary btn-sm" %>
-          <% else %>
-            <%= link_to "찜 해제하기", user_item_path(item.id), method: :delete, class: "btn btn-primary btn-sm" %>
-            <%= link_to '장바구니에 담기', "", class: "btn btn-primary btn-sm" %>
-          <% end %>
+            <p class="card-text"><%= item.description.html_safe %></p>
+            <% if @info_type == "upload" %>
+              <%= link_to 'delete', image_item_path(item), method: :delete, data: {confirm: "정말로 삭제하시겠습니까?"}, class: "btn btn-outline-secondary btn-sm material-icons" %>
+            <% elsif @info_type == "paid" %>
+              <%= link_to "get_app", item.repimg.url, download: "ImageItem_#{item.id}_repimg", class: "btn btn-outline-secondary btn-sm material-icons" %> 
+            <% elsif @info_type == "cart" %>          
+              <%= link_to 'delete', toggle_set_line_item_image_item_path(item), method: :post, class: "btn btn-outline-secondary btn-sm material-icons" %>
+            <% else %>
+              <%= link_to "favorite", toggle_set_user_item_image_item_path(item), method: :post, class: "btn btn-outline-secondary btn-sm material-icons" %>
+              <%= link_to 'add_shopping_cart', toggle_set_line_item_image_item_path(item), method: :post, class: "btn btn-outline-secondary btn-sm material-icons" unless current_user.has_item?(item, "cart_item") %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 <% if @info_type == "cart" %>
-  <%= link_to '구매하기', edit_order_path(current_user.orders.cart.first), class: "btn btn-primary btn-sm"%>
+  <%= link_to 'monetization_on', edit_order_path(current_user.orders.cart.first), class: "btn btn-outline-secondary btn-sm material-icons justify-content-right"%>
 <% end %>
 <div>
-  <ul class="pagination">
+  <ul class="pagination justify-content-center">
     <%= paginate @image_items %>
   </ul>
-</div>
 </div>

@@ -3,20 +3,20 @@
     <div class="col-md-12">
       <%= form_for @image_item do |f| %>
         <div>
-          <%= f.hidden_field :user_id, class: "form-control", value: current_user.id%>
+          <%= f.hidden_field :user_id, class: "form-control", value: current_user.id %>
           <%= f.label :ImageTitle %><br/>
           <%= f.text_field :title, class: "form-control", placeholder: "title" %>
-        </div>
-        <br/>
-        <div id="image-price">
-          <%= f.label :ImagePrice %><br/>
-          <%= f.text_field :price, class: "form-control", placeholder: "price" %>
+        </div><br/>
+        <div class="row">
+          <div class="col">
+            <%= f.label :ImagePrice %><br/>
+            <%= f.text_field :price, class: "form-control", placeholder: "price" %>
+          </div>
         </div>
         <br/>
         <div class="upload-preview">
-          <img class="img-preview"/>
-          <br/><br/>
-          <%= f.file_field :repimg, class: "form-control file", placeholder: "Image" %>
+          <img class="img-preview"/><br/><br/>
+          <%= f.file_field :repimg, class: "form-control-file file", placeholder: "Image" %>
         </div>
         <br/>
         <%= f.label :ImageDescription %><br/>
@@ -32,6 +32,7 @@
 </div>
 
 <script type="text/javascript">
+  //업로드 할 이미지 preview
   $(document).ready(function(){
     var preview = $(".upload-preview img");
     $(".file").change(function(event){

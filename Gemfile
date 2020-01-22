@@ -32,6 +32,8 @@ gem 'kaminari'
 # Google OAuth
 gem 'omniauth-oauth2'
 gem 'omniauth-google-oauth2'
+# 아이콘 사용
+gem 'octicons'
 # API key security
 gem 'figaro'
 # Upload Video

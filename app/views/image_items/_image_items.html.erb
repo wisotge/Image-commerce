@@ -4,41 +4,32 @@
       <div class="card">
         <div class="thumbnail" style="margin-top:10px">
           <h1 class="a" style="text-align:center;">
-            <% if item.repimg %>
-              <%= image_tag item.repimg.url ,style: 'width: 320px; height: 350px;' unless item.repimg.thumb.url.nil? %>
-            <% else %>
-              <i class="fas fa-camera-retro fa-border fa-3x fa-fw" style="font-size:250px;" aria-hidden="true"></i>
-            <% end %>
+            <%= image_tag item.repimg.url ,style: 'width: 320px; height: 350px;' unless item.repimg.thumb.url.nil? %>
           </h1>
         </div>
         <div class="card-body">
           <h5 class="card-title" style="text-align:center;">
-            <% if item.price == 0 %>
-              <a href="/image_items/<%= item.id %>"><%= item.title %></a><br/>(FREE)
-            <% else %>
-              <a href="/image_items/<%= item.id %>"><%= item.title %></a><br/>(<%= number_with_delimiter item.price %>$)
-            <% end %>
+            <%= item.title %>&nbsp;<span class="badge badge-info"><%= (item.price == 0 ) ? "Free" : money(item.price) %></span>
           </h5>
           <hr/>
           <div style="text-align:center;">
+            <%= link_to "search", image_item_path(item), class: "btn btn-outline-secondary material-icons" %>
             <% if current_user %>
-              <%= link_to "상세정보", image_item_path(item), class: "btn btn-primary" %>
-              <%= link_to "장바구니",  toggle_set_line_item_image_item_path(item), method: :post, class: "btn btn-primary", id: "showItem" %>
-              <% if user_signed_in? && UserItem.find_by(user_id: current_user.id, image_item_id: item.id).present? %>
-                <%= link_to "찜해제", user_item_path(item.id), method: :delete, class: "btn btn-primary" %>
+              <% if current_user.has_item?(item, "paid_item") %>
+                <%= link_to "get_app", item.repimg.url, download: "ImageItem_#{item.id}_repimg", class: "btn btn-outline-secondary material-icons" %>
               <% else %>
-                <%= link_to "찜하기", user_items_path(image_item_id: item.id), method: "POST", class: "btn btn-primary"  %>
+                <%= link_to current_user.has_item?(item, "cart_item") ? "shopping_cart" : "add_shopping_cart",  toggle_set_line_item_image_item_path(item), method: :post, class: "btn btn-outline-secondary material-icons" %>
               <% end %>
+              <%= link_to current_user.has_item?(item, "user_item") ? "favorite" : "favorite_border", toggle_set_user_item_image_item_path(item), method: :post, class: "btn btn-outline-secondary material-icons" %>
             <% end %>
           </div>
         </div>
       </div>
     </div>
   <% end %>
-</div>
-<br/><br/>
+</div><br/><br/>
 <div>
-  <ul class="pagination">
+  <ul class="pagination justify-content-center">
     <%= paginate @image_items %>
   </ul>
 </div>

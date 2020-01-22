@@ -24,11 +24,7 @@
               <tr>
                 <td class="hidden-bottom">010-1234-5678</td>
                 <td rowspan="2"><%= current_user.image_items.size %></td>
-                <% if current_user.chocomush == nil %>
-                  <td class="hidden-right" rowspan="2">0</td>
-                <% else %>
-                  <td class="hidden-right" rowspan="2"><%= current_user.chocomush %></td>
-                <% end %>
+                <td class="hidden-right" rowspan="2"><%= current_user.chocomush %></td>
               </tr>
               <tr>
                 <td>경기도 수원시 영통구 123</td>
@@ -39,25 +35,21 @@
       </div>
     </div>
     <br/><br/>
-    <div class="row">
-      <div class="col-2">
-        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="align: top;">
+    <div>
+      <div class="dropdown" style="text-align:right;">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link
+        </a><br/><br/>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <%= link_to "구매한 상품", user_path(type: "paid"), class: "nav-link active", remote: true, data_toggle: "pill", role: "tab", aria_controls: "v-pills-profile", aria_selected: "true", remote: true %>
           <%= link_to "업로드한 상품", user_path(type: "upload"), class: "nav-link", remote: true, data_toggle: "pill", role: "tab", aria_controls: "v-pills-profile", aria_selected: "false", remote: true %>
           <%= link_to "장바구니", user_path(type: "cart"), class: "nav-link", remote: true, data_toggle: "pill", role: "tab", aria_controls: "v-pills-profile", aria_selected: "false", remote: true %>
           <%= link_to "찜한 상품", user_path(type: "useritem"), class: "nav-link", remote: true, data_toggle: "pill", role: "tab", aria_controls: "v-pills-profile", aria_selected: "false", remote: true %>
         </div>
       </div>
-      <div class="col-10">
-        <div class="tab-content" id="mylist">
-          <%= render partial: "users/mylist" %>
-        </div>
-        <br/>
-          <div class="pagination">
-            <%= paginate @image_items %>
-          </div>
-        <br/>
-      </div>
+      <div class="tab-content" id="mylist">
+        <%= render partial: "users/mylist" %>
+      </div><br/>
     </div>
   </div>
 </div>

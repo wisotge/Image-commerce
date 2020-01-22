@@ -1,28 +1,31 @@
-<div class="charge-container">
-  <%= form_for current_user, url: user_path, method: :put do |f| %>
-    <div class="">
-      현재 잔액 : <%= current_user.chocomush %>
+<div class="container">
+  <div class="row text-center">
+    <div class="card col-md-6 offset-md-3 p-5" style="border:2px solid warning; margin-top:15%;">
+      <div class="panel-body">
+        <div class="mar-ver pad-btm">
+          <h1 class="h3">충전 페이지</h1>
+          <hr>
+        </div>
+        <label>현재 잔액</label>
+        <input class="form-control" type="text" placeholder="<%= current_user.chocomush %>" readonly><br/>
+        <%= form_for(current_user, method: :put) do |f| %>
+          <div class="form-group">
+            <%= f.label :chocomush %><br/>
+            <%= f.number_field :chocomush, id: "charge_mount", class: "form-control", placeholder: "charge amount" %>
+          </div>
+          <hr>
+          <div class="actions">
+            <%= f.submit "충전하기", :class => 'btn btn-primary btn-block' %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div>
-      <%= f.label :chocomush %><br/>
-      <%= f.number_field :chocomush, id: "charge_mount", class: "form-control", placeholder: "charge amount" %>
-    </div>
-    <div class="actions">
-      <%= f.submit " 충 전 ",id: :"charge-btn", class: 'btn btn-primary btn-block'%>
-    </div>
-  <% end %> 
-  <br/>
+  </div>
 </div>
+
 
 <script type="text/javascript">
   $("document").ready(function(){
     $('#charge_mount').val('')
   })
 </script>
-<style>
-  .charge-container {
-    width: 30%;
-    margin: 0 auto;
-    text-align: center;
-  }
-</style>

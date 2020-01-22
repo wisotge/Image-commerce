@@ -1,22 +1,58 @@
 <div class="container">
   <div class="row text-center">
-    <div class="card col-md-6 offset-md-3 p-5" style="border:2px solid warning;">
+    <div class="card col-md-6 offset-md-3 p-5" style="border:2px solid warning; margin-top:15%;">
       <div class="panel-body">
         <div class="mar-ver pad-btm">
           <h1 class="h3">결제 페이지</h1>
           <hr>
         </div>
+        <label>보유금액</label>
+        <input class="form-control" type="text" placeholder="<%= current_user.chocomush %>" readonly><br/>
         <%= form_for(@order, method: :put) do |f| %>
         <div class="form-group">
           <%= f.label :결제금액 %><br/>
           <%= f.text_field :total, class: "form-control", placeholder: "total" %>
         </div>
+        <label>결제 후 잔액</label>
+        <input class="form-control" type="text" placeholder="<%= @balance %>" readonly><br/>
+        <hr>
         <div class="actions">
           <%= f.submit "구입하기", :class => 'btn btn-primary btn-block' %>
         </div>
-        <hr>
       <% end %>
     </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+ $("#purchase_confirm_button").on("click", function(){
+    var holdingAmount = $("#holding-amount").val();
+    var purchaseAmount = $("#purchase-amount").val();
+    purchaseAmount = parseInt(purchaseAmount);
+    if(holdingAmount < purchaseAmount){
+      alert("보유금액이 부족합니다.");
+      var url = "/users/<%= current_user.id %>/edit"
+      $(location).attr('href', url);
+    }else{
+      $.ajax({
+        type: "POST",
+        url: "<%= orders_path %>",
+        data: {chocomush: purchaseAmount,
+               id: $("#purchase-imageid").val()},
+        dataType: "json",
+        beforeSend : function(xhr) {
+          xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+        },
+        success: function (data) {
+          console.log("success");
+          $("#purchase_modal").hide();
+          location.href = "/";
+        },
+        error : function(data){
+          $("#search_error").show();
+        }
+      });
+    }
+  })
+</script>

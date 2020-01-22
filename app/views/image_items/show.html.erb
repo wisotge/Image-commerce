@@ -6,14 +6,7 @@
           <table border="1" width="1100" height="150">
             <tr>
               <td width="20%" rowspan="3">
-                <% if @image_item.repimg %>
-                  <%= image_tag @image_item.repimg.url ,style: 'width: 320px; height: 300px;' unless @image_item.repimg.url.nil? %>
-                <% else %>
-                  <% if @image_item.video? %>
-                  <%= video_tag(@image_item.video.url(:medium), controls: true, size: "543x353") %>
-                  <% end %>
-                  <i class="fas fa-camera-retro fa-border fa-3x fa-fw" style="font-size:250px;" aria-hidden="true"></i>
-                <% end %>
+                <%= image_tag @image_item.repimg.url ,style: 'width: 320px; height: 300px;' unless @image_item.repimg.url.nil? %>
               </td>
               <td class="hidden-bottom tableContent">
                 <strong>제품명: </strong><%= @image_item.title %>
@@ -21,7 +14,7 @@
             </tr>
             <tr>
               <td class="tableContent">
-                제품 가격: <%= @image_item.price %>
+                제품 가격: <%= money(@image_item.price) %>
               </td>
             </tr>
             <tr>
@@ -65,5 +58,4 @@
     </div>
   </div>
   <hr/>
-
 </div>

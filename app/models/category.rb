@@ -8,4 +8,7 @@ class Category < ApplicationRecord
     end
   end
   
+  def by_title category 
+    category.title
+  end
 end

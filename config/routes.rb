@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   resources :image_items do
     member do
-      put :add_video
       post :toggle_set_line_item
+      post :toggle_set_user_item
     end
   end
 
@@ -17,8 +17,8 @@ Rails.application.routes.draw do
       put :add_balance
     end 
   end 
+
   resources :reviews, only: [:create, :destroy]
   resources :orders
-  resources :user_items, only: [:create, :destroy]
   resources :line_items
 end

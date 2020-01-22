@@ -1,9 +1,14 @@
 <header class="navbar navbar-expand-lg navbar-fixed-top myNavbar">
   <div class="container">
-    <a class="navbar-brand navbarLogo" href="/">Image Store</a>
-    <ul class="navbar-nav">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand navbarText" href="/"><h3>ImageMarket</h3></a>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <%= link_to "Show Image", root_path, class: "nav-link navbarText" %>
+        <%= link_to "Show Image", root_path, class: "nav-link navbarText" %> 
       </li>
       <% if current_user %>
         <li class="nav-item">
@@ -24,5 +29,14 @@
         </li>
       <% end %>
     </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <%= form_tag request.parameters, method: :get do %>
+          <div class="form-inline">
+            <%= text_field_tag :q, params[:q], class: "form-control mr-sm-2", type: "search", placeholder: "Image" %>
+            <%= submit_tag "Search", class: "btn btn-outline-success my-2 my-sm-0"%>
+          </div>
+        <% end %>
+    </form>
+  </div>
   </div>
 </header>
